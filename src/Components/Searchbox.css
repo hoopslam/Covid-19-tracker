@@ -1,0 +1,57 @@
+*:focus {
+  outline: none;
+}
+
+input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.2rem;
+  margin-right: 0.5rem;
+  color: white;
+  background: rgba(214, 191, 181, 0.226);
+  width: 230px;
+}
+
+input::placeholder {
+  color: rgb(255, 255, 255);
+}
+
+input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.search-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.search-dropdown-content {
+  max-height: 65vh;
+  overflow-y: scroll;
+  display: block;
+  position: absolute;
+  background-color: rgba(214, 191, 181, 0.062);
+  color: white;
+  width: 230px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.search-dropdown-content::-webkit-scrollbar {
+  display: none;
+}
+
+.search-dropdown-content div {
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.search-dropdown-content div:hover {
+  background-color: rgba(214, 191, 181, 0.226);
+  cursor: pointer;
+}
+
+.search-dropdown:hover input {
+  background-color: rgba(214, 191, 181, 0.658);
+}
