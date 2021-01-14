@@ -26,18 +26,18 @@ function App() {
 
   // useEffect(() => {  rerender ui whenever selected country changes
 
-  // }, [selectedCountry])
-
   const onSearchChange = (e) => {
     if (e.key === "Enter") {  //set Selected country to whatever was at the top of the filtered search result
       setSelectedCountry(filteredCountries[0])
-    }
+      setFilteredCountries([])
+    } else {
     setFilteredCountries(
       countriesNames.filter(country => {
         return country.toLowerCase().startsWith(e.target.value.toLowerCase())  //filter based on beginning letters
       })
-    ) 
+    )} 
   }
+  console.log(filteredCountries)
 
   const onSelectedCountryChange = (selected) => {
     setSelectedCountry(selected.target.innerText)
