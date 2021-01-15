@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from "react";
 import Searchbox from "./Components/Searchbox";
 import DropMenu from "./Components/DropMenu";
+import DataType from "./Components/DataType";
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
   const [selectedCountry, setSelectedCountry] = useState();
   const [countriesNames, setCountriesNames] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
+  const [selectedType, setSelectedType] = useState(["todayCases"]);
   
   useEffect(() => {  // On pageload, fetch yesterday's data and set in state
     fetch("https://disease.sh/v3/covid-19/countries?yesterday=true")
@@ -29,7 +31,7 @@ function App() {
   const onSearchChange = (e) => {
     if (e.key === "Enter") {  //set Selected country to whatever was at the top of the filtered search result
       setSelectedCountry(filteredCountries[0])
-      setFilteredCountries([])
+      setFilteredCountries([])  //reset filteredCountries after enter is pressed
     } else {
     setFilteredCountries(
       countriesNames.filter(country => {
@@ -37,10 +39,14 @@ function App() {
       })
     )} 
   }
-  console.log(filteredCountries)
 
   const onSelectedCountryChange = (selected) => {
     setSelectedCountry(selected.target.innerText)
+  }
+
+  const onSelectedTypeChange = (selected) => {
+    console.log(selected)
+    // setSelectedType(selected)
   }
 
   return (
@@ -56,8 +62,18 @@ function App() {
             countryNames={countriesNames} 
             selectedCountry={selectedCountry} 
             selectChange={onSelectedCountryChange}/>
+          <DataType
+            selectedType={selectedType}
+            selectedTypeChange={onSelectedTypeChange} />
         </nav>
       </header>
+      {/* <section className="left">
+        <Map />
+        <CountrySummary />
+      </section>
+      <section className="right">
+        <CountriesList />
+      </section> */}
     </div>
   );
 }

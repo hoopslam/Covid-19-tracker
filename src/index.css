@@ -11,8 +11,8 @@ body {
       rgb(3, 7, 14),
       rgba(20, 20, 48, 0.486) 90%
     ),
-    linear-gradient(127deg, rgba(212, 80, 19, 0.712), rgba(255, 174, 0, 0) 40%),
-    linear-gradient(336deg, rgba(14, 121, 124, 0.8), rgba(0, 0, 255, 0) 30%);
+    linear-gradient(127deg, rgb(212, 80, 19), rgba(255, 174, 0, 0) 40%),
+    linear-gradient(336deg, rgb(14, 84, 124), rgba(0, 0, 255, 0) 30%);
   height: 100vh;
   color: white;
 }
