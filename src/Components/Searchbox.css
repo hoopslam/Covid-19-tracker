@@ -7,10 +7,9 @@ input {
   font-size: 1rem;
   border: none;
   border-radius: 0.2rem;
-  margin-right: 0.5rem;
   color: white;
   background: rgba(214, 191, 181, 0.226);
-  width: 230px;
+  width: 200px;
 }
 
 input::placeholder {
@@ -27,15 +26,16 @@ input::-webkit-search-cancel-button {
 }
 
 .search-dropdown-content {
-  max-height: 65vh;
+  max-height: 100vh;
   overflow-y: scroll;
   display: block;
   position: absolute;
   background-color: rgba(214, 191, 181, 0.062);
   color: white;
-  width: 230px;
+  width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  margin-left: 5px;
 }
 
 .search-dropdown-content::-webkit-scrollbar {
@@ -54,4 +54,10 @@ input::-webkit-search-cancel-button {
 
 .search-dropdown:hover input {
   background-color: rgba(214, 191, 181, 0.658);
+}
+
+@media (max-width: 650px) {
+  .search-dropdown-content {
+    display: none;
+  }
 }

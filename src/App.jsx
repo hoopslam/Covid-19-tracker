@@ -54,17 +54,19 @@ function App() {
       <header className="App-header">
         <h1 className="App_title">Covid-19 Tracker</h1>
         <nav className="App-nav">
-          <Searchbox 
+          <Searchbox
             searchChange={onSearchChange} 
             filteredCountries={filteredCountries}
             selectChange={onSelectedCountryChange}/>
-          <DropMenu 
-            countryNames={countriesNames} 
-            selectedCountry={selectedCountry} 
-            selectChange={onSelectedCountryChange}/>
-          <DataType
-            selectedType={selectedType}
-            selectedTypeChange={onSelectedTypeChange} />
+          <div className="menu-container">
+            <DropMenu 
+              countryNames={countriesNames} 
+              selectedCountry={selectedCountry} 
+              selectChange={onSelectedCountryChange}/>
+            <DataType
+              selectedType={selectedType}
+              selectedTypeChange={onSelectedTypeChange} />
+          </div>
         </nav>
       </header>
       {/* <section className="left">

@@ -1,12 +1,12 @@
 .dropbtn {
-  background-color: rgba(14, 120, 124, 0.671);
+  background-color: rgba(14, 120, 124, 0.68);
   color: white;
   padding: 0.5rem;
   font-size: 1rem;
   border: none;
   border-radius: 0.2rem;
-  width: 230px;
-  margin: 0px 3px;
+  width: 200px;
+  margin-right: 10px;
 }
 
 .dropdown {
@@ -15,16 +15,15 @@
 }
 
 .dropdown-content {
-  height: 65vh;
+  max-height: 65vh;
   overflow-y: scroll;
   display: none;
   position: absolute;
   background-color: rgba(14, 120, 124, 0.068);
   color: white;
-  width: 230px;
+  width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  margin: 0px 3px;
 }
 
 .dropdown-content::-webkit-scrollbar {

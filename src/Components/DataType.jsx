@@ -1,5 +1,5 @@
 import React from 'react'
-import "./DataType.css"
+import "./DropMenu.css"
 
 function DataType({selectedType, selectedTypeChange}) {
     return (
