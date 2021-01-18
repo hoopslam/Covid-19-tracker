@@ -13,6 +13,7 @@ function App() {
   const [countriesData, setCountriesData] = useState([]);
   const [worldData, setWorldData] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState();
+  const [countryData, setCountryData] = useState();
   const [countriesNames, setCountriesNames] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [selectedTypeMenu, setSelectedTypeMenu] = useState(["Cases today"]);
@@ -34,6 +35,20 @@ function App() {
   }, [countriesData])
 
   // useEffect(() => {  rerender ui whenever selected country changes
+  useEffect(() => {
+    if(!selectedCountry || selectedCountry === "Worldwide"){
+      setCenter({lat: 15, lng: 0})
+      setZoom(2)
+      setCountryData(worldData)
+    } else {
+      let countryStats = countriesData.find(country => {
+        return country.country === selectedCountry
+      })
+      setCountryData(countryStats)
+      setCenter([countryStats.countryInfo.lat, countryStats.countryInfo.long])
+      setZoom(4)
+    }
+  }, [selectedCountry])
 
   const onSearchChange = (e) => {
     if (e.key === "Enter") {  //set Selected country to whatever was at the top of the filtered search result

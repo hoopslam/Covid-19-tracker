@@ -5,7 +5,7 @@ function DataType({selectedType, selectedTypeChange}) {
     return (
         <div className="dropdown">
             <button className="dropbtn">{selectedType}</button>
-            <div className="dropdown-content">
+            <div className="dropdown-content type">
                 <div className="menuItem" onClick={selectedTypeChange} data-value="todayCases">Cases today</div>
                 <div className="menuItem" onClick={selectedTypeChange} data-value="cases">Cases total</div>
                 <div className="menuItem" onClick={selectedTypeChange} data-value="todayDeaths">Deaths today</div>
