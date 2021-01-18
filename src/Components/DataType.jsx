@@ -4,7 +4,7 @@ import "./DropMenu.css"
 function DataType({selectedType, selectedTypeChange}) {
     return (
         <div className="dropdown">
-            <button className="dropbtn">Select Data</button>
+            <button className="dropbtn">{selectedType}</button>
             <div className="dropdown-content">
                 <div className="menuItem" onClick={selectedTypeChange} data-value="todayCases">Cases today</div>
                 <div className="menuItem" onClick={selectedTypeChange} data-value="cases">Cases total</div>

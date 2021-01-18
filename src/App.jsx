@@ -11,6 +11,7 @@ function App() {
   const [selectedCountry, setSelectedCountry] = useState();
   const [countriesNames, setCountriesNames] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
+  const [selectedTypeMenu, setSelectedTypeMenu] = useState(["Cases today"]);
   const [selectedType, setSelectedType] = useState(["todayCases"]);
   
   useEffect(() => {  // On pageload, fetch yesterday's data and set in state
@@ -45,8 +46,8 @@ function App() {
   }
 
   const onSelectedTypeChange = (selected) => {
-    console.log(selected)
-    // setSelectedType(selected)
+    setSelectedType(selected.target.dataset.value)
+    setSelectedTypeMenu(selected.target.innerText)
   }
 
   return (
@@ -64,9 +65,10 @@ function App() {
               selectedCountry={selectedCountry} 
               selectChange={onSelectedCountryChange}/>
             <DataType
-              selectedType={selectedType}
+              selectedType={selectedTypeMenu}
               selectedTypeChange={onSelectedTypeChange} />
           </div>
+          
         </nav>
       </header>
       {/* <section className="left">

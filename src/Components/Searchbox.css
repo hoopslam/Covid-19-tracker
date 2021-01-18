@@ -8,7 +8,7 @@ input {
   border: none;
   border-radius: 0.2rem;
   color: white;
-  background: rgba(214, 191, 181, 0.226);
+  background: rgba(110, 110, 110, 0.596);
   width: 200px;
 }
 
@@ -30,7 +30,7 @@ input::-webkit-search-cancel-button {
   overflow-y: scroll;
   display: block;
   position: absolute;
-  background-color: rgba(214, 191, 181, 0.062);
+  background-color: rgba(80, 80, 80, 0.75);
   color: white;
   width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -57,7 +57,11 @@ input::-webkit-search-cancel-button {
 }
 
 @media (max-width: 650px) {
+  input {
+    width: 410px;
+  }
   .search-dropdown-content {
-    display: none;
+    width: 410px;
+    margin-left: 0px;
   }
 }
