@@ -3,6 +3,10 @@ import { useState, useEffect } from "react";
 import Searchbox from "./Components/Searchbox";
 import DropMenu from "./Components/DropMenu";
 import DataType from "./Components/DataType";
+import MapComponent from "./Components/MapComponent";
+import CountrySummary from "./Components/CountrySummary";
+import CountriesList from "./Components/CountriesList";
+import "leaflet/dist/leaflet.css";
 
 function App() {
 
@@ -13,6 +17,8 @@ function App() {
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [selectedTypeMenu, setSelectedTypeMenu] = useState(["Cases today"]);
   const [selectedType, setSelectedType] = useState(["todayCases"]);
+  const [center, setCenter] = useState({ lat: 15, lng: 0});
+  const [zoom, setZoom] = useState(2);
   
   useEffect(() => {  // On pageload, fetch yesterday's data and set in state
     fetch("https://disease.sh/v3/covid-19/countries?yesterday=true")
@@ -71,13 +77,13 @@ function App() {
           
         </nav>
       </header>
-      {/* <section className="left">
-        <Map />
+      <div className="map-container">
+        <MapComponent center={center} zoom={zoom}/>
+      </div>
+      <section className="details">
         <CountrySummary />
-      </section>
-      <section className="right">
         <CountriesList />
-      </section> */}
+      </section>
     </div>
   );
 }

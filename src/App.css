@@ -1,3 +1,9 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .App-header {
   min-height: 10vh;
   display: flex;
@@ -17,8 +23,24 @@
   display: flex;
 }
 
+.map-container {
+  width: 65vw;
+  margin: 15px 0px;
+}
+
+.details {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 @media (max-width: 650px) {
   .App-nav {
     grid-template-columns: 400px;
+  }
+  .details {
+    flex-direction: column;
+  }
+  .map-container {
+    width: 90vw;
   }
 }
