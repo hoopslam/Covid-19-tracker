@@ -15,57 +15,45 @@ function App() {
   const [selectedCountry, setSelectedCountry] = useState();
   const [countryData, setCountryData] = useState();
   const [countriesNames, setCountriesNames] = useState([]);
-  const [filteredCountries, setFilteredCountries] = useState([]);
   const [selectedTypeMenu, setSelectedTypeMenu] = useState(["Cases today"]);
   const [selectedType, setSelectedType] = useState(["todayCases"]);
   const [center, setCenter] = useState({ lat: 15, lng: 0});
   const [zoom, setZoom] = useState(2);
   
-  useEffect(() => {  // On pageload, fetch yesterday's data and set in state
-    fetch("https://disease.sh/v3/covid-19/countries?yesterday=true")
-      .then(response => response.json())
-      .then(data => setCountriesData(data))
-    fetch("https://disease.sh/v3/covid-19/all")
-      .then(response => response.json())
-      .then(data => setWorldData(data))
+  // On pageload, fetch yesterday's data and set in state
+  useEffect(() => {
+    async function fetchData() {
+      const countriesResponse = await fetch("https://disease.sh/v3/covid-19/countries?yesterday=true");
+      const countriesJson = await countriesResponse.json();
+      const worldResponse = await fetch("https://disease.sh/v3/covid-19/all");
+      const worldJson = await worldResponse.json();
+
+      setCountriesData(countriesJson);
+      setWorldData(worldJson);
+      setCountriesNames(countriesJson.map(country => country.country));
+    }
+    fetchData();
   },[]);
 
-  useEffect(() => {  // Once countriesData is fetched, set countriesNames with fresh data.
-    setCountriesNames(countriesData.map(country => country.country));
-  }, [countriesData])
-
-  // useEffect(() => {  rerender ui whenever selected country changes
-  useEffect(() => {
-    if(!selectedCountry || selectedCountry === "Worldwide"){
+  //function to handle country change from dropdown menu
+  const onSelectedCountryChange = (selected) => {
+    if(selected === "Worldwide"){
       setCenter({lat: 15, lng: 0})
       setZoom(2)
       setCountryData(worldData)
+      setSelectedCountry("Worldwide")
     } else {
       let countryStats = countriesData.find(country => {
-        return country.country === selectedCountry
+        return country.country === selected
       })
       setCountryData(countryStats)
       setCenter([countryStats.countryInfo.lat, countryStats.countryInfo.long])
       setZoom(4)
+      setSelectedCountry(countryStats.country)
     }
-  }, [selectedCountry])
-
-  const onSearchChange = (e) => {
-    if (e.key === "Enter") {  //set Selected country to whatever was at the top of the filtered search result
-      setSelectedCountry(filteredCountries[0])
-      setFilteredCountries([])  //reset filteredCountries after enter is pressed
-    } else {
-    setFilteredCountries(
-      countriesNames.filter(country => {
-        return country.toLowerCase().startsWith(e.target.value.toLowerCase())  //filter based on beginning letters
-      })
-    )} 
   }
 
-  const onSelectedCountryChange = (selected) => {
-    setSelectedCountry(selected.target.innerText)
-  }
-
+  //function to handle datatype change from dropdown menu
   const onSelectedTypeChange = (selected) => {
     setSelectedType(selected.target.dataset.value)
     setSelectedTypeMenu(selected.target.innerText)
@@ -73,12 +61,12 @@ function App() {
 
   return (
     <div className="App">
+
       <header className="App-header">
         <h1 className="App_title">Covid-19 Tracker</h1>
         <nav className="App-nav">
           <Searchbox
-            searchChange={onSearchChange} 
-            filteredCountries={filteredCountries}
+            countriesNames={countriesNames}
             selectChange={onSelectedCountryChange}/>
           <div className="menu-container">
             <DropMenu 
@@ -89,15 +77,16 @@ function App() {
               selectedType={selectedTypeMenu}
               selectedTypeChange={onSelectedTypeChange} />
           </div>
-          
         </nav>
       </header>
+
       <div className="map-container">
         <MapComponent center={center} zoom={zoom}/>
       </div>
+
       <section className="details">
-        <CountrySummary />
-        <CountriesList />
+        <CountrySummary countryData={countryData}/>
+        <CountriesList selectedType={selectedType}/>
       </section>
     </div>
   );

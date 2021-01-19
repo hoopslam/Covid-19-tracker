@@ -6,9 +6,9 @@ function DropMenu({countryNames, selectedCountry, selectChange}) {
         <div className="dropdown">
             <button className="dropbtn">{selectedCountry? `${selectedCountry}`:"Select Country"}</button>
             <div className="dropdown-content">
-                <div className="menuItem" onClick={selectChange}>Worldwide</div>
+                <div className="menuItem" onClick={() => selectChange("Worldwide")}>Worldwide</div>
                 {countryNames.map((country, i) => (
-                    <div className="menuItem" key={i} onClick={selectChange}>{country}</div>
+                    <div className="menuItem" key={i} onClick={() => selectChange(country)}>{country}</div>
                 ))}
             </div>
         </div>
