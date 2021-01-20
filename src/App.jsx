@@ -31,8 +31,10 @@ function App() {
       setCountriesData(countriesJson);
       setWorldData(worldJson);
       setCountriesNames(countriesJson.map(country => country.country));
+      setCountryData(()=> worldJson);
     }
     fetchData();
+    console.log("fetching")
   },[]);
 
   //function to handle country change from dropdown menu
@@ -85,7 +87,9 @@ function App() {
       </div>
 
       <section className="details">
-        <CountrySummary countryData={countryData}/>
+        {countryData ? 
+          <CountrySummary countryData={countryData}/>
+          : <h1>Loading</h1>}        
         <CountriesList selectedType={selectedType}/>
       </section>
     </div>

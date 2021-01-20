@@ -6,7 +6,7 @@ import ChangeView from "./ChangeView";
 function MapComponent({center, zoom}) {
     return (
         <div className="map">
-            <MapContainer center={center} zoom={zoom} scrollWheelZoom={true}>
+            <MapContainer center={center} zoom={zoom} scrollWheelZoom={false}>
                 <ChangeView center={center} zoom={zoom} />
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
