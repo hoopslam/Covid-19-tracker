@@ -16,7 +16,7 @@ function App() {
   const [countryData, setCountryData] = useState();
   const [countriesNames, setCountriesNames] = useState([]);
   const [selectedTypeMenu, setSelectedTypeMenu] = useState(["Cases today"]);
-  const [selectedType, setSelectedType] = useState(["todayCases"]);
+  const [typeData, setTypeData] = useState([]);
   const [center, setCenter] = useState({ lat: 15, lng: 0});
   const [zoom, setZoom] = useState(2);
   
@@ -32,6 +32,12 @@ function App() {
       setWorldData(worldJson);
       setCountriesNames(countriesJson.map(country => country.country));
       setCountryData(()=> worldJson);
+      setTypeData(countriesJson.map(country => (
+        {
+          country: country.country,
+          type: country.cases
+        })).sort((a, b) => b.type - a.type)
+        )
     }
     fetchData();
     console.log("fetching")
@@ -57,7 +63,12 @@ function App() {
 
   //function to handle datatype change from dropdown menu
   const onSelectedTypeChange = (selected) => {
-    setSelectedType(selected.target.dataset.value)
+    setTypeData(countriesData.map(country => (
+      {
+        country: country.country,
+        type: country[selected.target.dataset.value]
+      })).sort((a,b) => b.type - a.type)
+    )
     setSelectedTypeMenu(selected.target.innerText)
   }
 
@@ -90,7 +101,7 @@ function App() {
         {countryData ? 
           <CountrySummary countryData={countryData}/>
           : <h1>Loading</h1>}        
-        <CountriesList selectedType={selectedType}/>
+        <CountriesList typeData={typeData} selectedTypeMenu={selectedTypeMenu}/>
       </section>
     </div>
   );
