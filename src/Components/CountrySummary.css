@@ -1,0 +1,10 @@
+.country-summary-container {
+  margin: 40px;
+  min-width: 400px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

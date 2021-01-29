@@ -1,0 +1,21 @@
+.CountriesList {
+  margin: 40px;
+}
+
+.list-container {
+  max-height: 700px;
+  overflow-y: scroll;
+  text-align: left;
+  min-width: 320px;
+}
+
+.list-country-data {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 10px 5px 10px;
+}
+
+.button:hover {
+  background-color: rgba(80, 80, 80, 0.5);
+  cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import { useState, useEffect } from "react";
 import Searchbox from "./Components/Searchbox";
 import DropMenu from "./Components/DropMenu";
@@ -9,99 +9,123 @@ import CountriesList from "./Components/CountriesList";
 import "leaflet/dist/leaflet.css";
 
 function App() {
-
   const [countriesData, setCountriesData] = useState([]);
   const [worldData, setWorldData] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState();
   const [countryData, setCountryData] = useState();
   const [countriesNames, setCountriesNames] = useState([]);
-  const [selectedTypeMenu, setSelectedTypeMenu] = useState(["Cases today"]);
+  const [selectedTypeMenu, setSelectedTypeMenu] = useState(["New Cases"]);
   const [typeData, setTypeData] = useState([]);
-  const [center, setCenter] = useState({ lat: 15, lng: 0});
+  const [center, setCenter] = useState({ lat: 15, lng: 0 });
   const [zoom, setZoom] = useState(2);
-  
+
   // On pageload, fetch yesterday's data and set in state
   useEffect(() => {
     async function fetchData() {
-      const countriesResponse = await fetch("https://disease.sh/v3/covid-19/countries?yesterday=true");
+      const countriesResponse = await fetch(
+        "https://disease.sh/v3/covid-19/countries?yesterday=true"
+      );
       const countriesJson = await countriesResponse.json();
-      const worldResponse = await fetch("https://disease.sh/v3/covid-19/all");
+      const worldResponse = await fetch(
+        "https://disease.sh/v3/covid-19/all?yesterday=true"
+      );
       const worldJson = await worldResponse.json();
 
       setCountriesData(countriesJson);
       setWorldData(worldJson);
-      setCountriesNames(countriesJson.map(country => country.country));
-      setCountryData(()=> worldJson);
-      setTypeData(countriesJson.map(country => (
-        {
-          country: country.country,
-          type: country.cases
-        })).sort((a, b) => b.type - a.type)
-        )
+      setCountriesNames(countriesJson.map((country) => country.country));
+      setCountryData(() => worldJson);
+      setTypeData(
+        countriesJson
+          .map((country) => ({
+            country: country.country,
+            type: country.todayCases,
+          }))
+          .sort((a, b) => b.type - a.type)
+      );
     }
     fetchData();
-    console.log("fetching")
-  },[]);
+    console.log("fetching");
+  }, []);
 
   //function to handle country change from dropdown menu
   const onSelectedCountryChange = (selected) => {
-    if(selected === "Worldwide"){
-      setCenter({lat: 15, lng: 0})
-      setZoom(2)
-      setCountryData(worldData)
-      setSelectedCountry("Worldwide")
+    if (selected === "Worldwide") {
+      setCenter({ lat: 15, lng: 0 });
+      setZoom(2);
+      setCountryData(worldData);
+      setSelectedCountry("Worldwide");
     } else {
-      let countryStats = countriesData.find(country => {
-        return country.country === selected
-      })
-      setCountryData(countryStats)
-      setCenter([countryStats.countryInfo.lat, countryStats.countryInfo.long])
-      setZoom(4)
-      setSelectedCountry(countryStats.country)
+      let countryStats = countriesData.find((country) => {
+        return country.country === selected;
+      });
+      setCountryData(countryStats);
+      setCenter([countryStats.countryInfo.lat, countryStats.countryInfo.long]);
+      setZoom(4);
+      setSelectedCountry(countryStats.country);
     }
-  }
+  };
 
   //function to handle datatype change from dropdown menu
   const onSelectedTypeChange = (selected) => {
-    setTypeData(countriesData.map(country => (
-      {
-        country: country.country,
-        type: country[selected.target.dataset.value]
-      })).sort((a,b) => b.type - a.type)
-    )
-    setSelectedTypeMenu(selected.target.innerText)
-  }
+    if(selected.target.dataset.value === 'percentage'){
+      setTypeData(
+        countriesData
+          .map((country) => ({
+            country: country.country,
+            type: Math.round((country.cases / country.population) * 100),
+          }))
+          .sort((a, b) => b.type - a.type)
+      );
+    } else {
+      setTypeData(
+        countriesData
+          .map((country) => ({
+            country: country.country,
+            type: country[selected.target.dataset.value],
+          }))
+          .sort((a, b) => b.type - a.type)
+      );
+    }
+    setSelectedTypeMenu(selected.target.innerText);
+  };
 
   return (
     <div className="App">
-
       <header className="App-header">
         <h1 className="App_title">Covid-19 Tracker</h1>
-        <nav className="App-nav">
+        <div className="map-container">
+          <MapComponent center={center} zoom={zoom} />
+        </div>
+      </header>
+      <nav className="App-nav">
           <Searchbox
             countriesNames={countriesNames}
-            selectChange={onSelectedCountryChange}/>
+            selectChange={onSelectedCountryChange}
+          />
           <div className="menu-container">
-            <DropMenu 
-              countryNames={countriesNames} 
-              selectedCountry={selectedCountry} 
-              selectChange={onSelectedCountryChange}/>
-            <DataType
-              selectedType={selectedTypeMenu}
-              selectedTypeChange={onSelectedTypeChange} />
-          </div>
-        </nav>
-      </header>
-
-      <div className="map-container">
-        <MapComponent center={center} zoom={zoom}/>
+        <DropMenu
+          countryNames={countriesNames}
+          selectedCountry={selectedCountry}
+          selectChange={onSelectedCountryChange}
+        />
+        <DataType
+          selectedType={selectedTypeMenu}
+          selectedTypeChange={onSelectedTypeChange}
+        />
       </div>
+        </nav>
 
       <section className="details">
-        {countryData ? 
-          <CountrySummary countryData={countryData}/>
-          : <h1>Loading</h1>}        
-        <CountriesList typeData={typeData} selectedTypeMenu={selectedTypeMenu}/>
+        {countryData ? (
+          <CountrySummary countryData={countryData} />
+        ) : (
+          <h1>Loading</h1>
+        )}
+        <CountriesList
+          typeData={typeData}
+          selectChange={onSelectedCountryChange}
+        />
       </section>
     </div>
   );

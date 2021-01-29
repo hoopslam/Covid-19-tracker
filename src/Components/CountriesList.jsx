@@ -1,17 +1,22 @@
-import React from 'react'
-import './CountriesList.css'
+import React from "react";
+import "./CountriesList.css";
 
-function CountriesList({typeData, selectedTypeMenu}) {
-
-    return (
-        <div>
-            <h1>{selectedTypeMenu}</h1>
-            {typeData.map((country, i) => (
-                <div className="list-country" key={i}>{country.country}: {country.type}</div>
-                ))
-            }
-        </div>
-    )
+function CountriesList({ typeData, selectChange }) {
+  return (
+    <div className="CountriesList">
+      <div className="list-container">
+        {typeData.map((country) => (
+          <div
+            className="list-country-data button"
+            onClick={() => selectChange(country.country)}
+          >
+            <div className="list-country-name">{country.country}</div>
+            <div className="list-country-number">{country.type}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default CountriesList
+export default CountriesList;
