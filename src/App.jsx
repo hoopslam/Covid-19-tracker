@@ -39,7 +39,10 @@ function App() {
         countriesJson
           .map((country) => ({
             country: country.country,
+            cat: "todayCases",
             type: country.todayCases,
+            lat: country.countryInfo.lat,
+            lng: country.countryInfo.long,
           }))
           .sort((a, b) => b.type - a.type)
       );
@@ -73,7 +76,10 @@ function App() {
         countriesData
           .map((country) => ({
             country: country.country,
-            type: Math.round((country.cases / country.population) * 100),
+            cat: selected.target.dataset.value,
+            type: Math.round((country.cases / country.population) * 10000)/100,
+            lat: country.countryInfo.lat,
+            lng: country.countryInfo.long,
           }))
           .sort((a, b) => b.type - a.type)
       );
@@ -82,7 +88,10 @@ function App() {
         countriesData
           .map((country) => ({
             country: country.country,
+            cat: selected.target.dataset.value,
             type: country[selected.target.dataset.value],
+            lat: country.countryInfo.lat,
+            lng: country.countryInfo.long,
           }))
           .sort((a, b) => b.type - a.type)
       );
@@ -95,7 +104,7 @@ function App() {
       <header className="App-header">
         <h1 className="App_title">Covid-19 Tracker</h1>
         <div className="map-container">
-          <MapComponent center={center} zoom={zoom} />
+          <MapComponent center={center} zoom={zoom} typeData={typeData}/>
         </div>
       </header>
       <nav className="App-nav">
