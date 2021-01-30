@@ -6,8 +6,8 @@ function Searchbox({ selectChange, countriesNames }) {
 
     const handleKeyUp = (e) => {
         if (e.key === "Enter") {  //set Selected country to whatever was at the top of the filtered search result
-            selectChange(filteredCountries[0])
-            setFilteredCountries([])  //reset filteredCountries after enter is pressed
+            e.target.value ? filteredCountries && selectChange(filteredCountries[0]) && setFilteredCountries([]) :
+            selectChange("Worldwide")
         } else {
             setFilteredCountries(
             countriesNames.filter(country => {

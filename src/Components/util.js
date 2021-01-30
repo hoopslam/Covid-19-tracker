@@ -1,48 +1,69 @@
-export const typeColors = {
+import React from 'react';
+import {Circle, Popup} from 'react-leaflet'
+import numeral from 'numeral'
+
+const typeColors = {
     cases: {
-        color: "rgb(0,0,255)",
-        multiplier: 800,
+        color: "#4634eb",
+        multiplier: 300,
     },
     todayCases: {
-        color: "rgb(0,0,255)",
-        multiplier: 2000,
+        color: "#4634eb",
+        multiplier: 2500,
     },
     deaths: {
-        color: "rgb(255,0,0)",
-        multiplier: 800,
-    },
-    todayDeaths: {
-        color: "rgb(255,0,0)",
+        color: "#eb3434",
         multiplier: 2000,
     },
+    todayDeaths: {
+        color: "#eb3434",
+        multiplier: 10000,
+    },
     recovered: {
-        color: "rgb(0,255,0)",
-        multiplier: 800,
+        color: "#00942a",
+        multiplier: 300,
     },
     todayRecovered: {
-        color: "rgb(0,255,0)",
+        color: "#00942a",
         multiplier: 2000,
     },
     active: {
-        color: "rgb(0,0,255)",
-        multiplier: 800,
+        color: "#4634eb",
+        multiplier: 400,
     },
     critical: {
-        color: "rgb(255,0,0)",
-        multiplier: 2000,
+        color: "#eb3434",
+        multiplier: 4000,
     },
     casesPerOneMillion: {
-        color: "rgb(0,0,255)",
-        multiplier: 800,
+        color: "#4634eb",
+        multiplier: 500,
     },
     deathsPerOneMillion: {
-        color: "rgb(255,0,0)",
-        multiplier: 2000,
+        color: "#eb3434",
+        multiplier: 5000,
     },
     percentage: {
-        color: "rgb(0,0,255)",
-        multiplier: 2000,
+        color: "#4634eb",
+        multiplier: 200000,
     },
 }
 
-export default typeColors;
+export const makeCircle = (typeData) => {
+    return typeData.map(country => (
+        <Circle
+          center={[country.lat, country.lng]}
+          pathOptions={{color: typeColors[country.cat].color,
+                        fillColor: typeColors[country.cat].color}}
+          fillOpacity={0.5}
+          radius={Math.sqrt(country.type) * typeColors[country.cat].multiplier}
+        >
+            <Popup>
+                <div className="popup">{country.country}</div>
+                <div className="popup">{numeral(country.type).format("0,0")}</div>
+            </Popup>
+        </Circle>
+        ))
+}
+
+export default makeCircle;

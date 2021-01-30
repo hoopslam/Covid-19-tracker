@@ -80,6 +80,7 @@ function App() {
             type: Math.round((country.cases / country.population) * 10000)/100,
             lat: country.countryInfo.lat,
             lng: country.countryInfo.long,
+            flag: country.countryInfo.flag
           }))
           .sort((a, b) => b.type - a.type)
       );
@@ -92,6 +93,7 @@ function App() {
             type: country[selected.target.dataset.value],
             lat: country.countryInfo.lat,
             lng: country.countryInfo.long,
+            flag: country.countryInfo.flag
           }))
           .sort((a, b) => b.type - a.type)
       );

@@ -1,5 +1,6 @@
 import React from "react";
 import "./CountriesList.css";
+import numeral from "numeral";
 
 function CountriesList({ typeData, selectChange }) {
   return (
@@ -11,7 +12,7 @@ function CountriesList({ typeData, selectChange }) {
             onClick={() => selectChange(country.country)}
           >
             <div className="list-country-name">{country.country}</div>
-            <div className="list-country-number">{country.type}</div>
+            <div className="list-country-number">{numeral(country.type).format("0,0")}</div>
           </div>
         ))}
       </div>

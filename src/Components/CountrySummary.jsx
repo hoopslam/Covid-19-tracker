@@ -1,5 +1,6 @@
 import React from "react";
 import "./CountrySummary.css";
+import numeral from "numeral";
 
 function CountrySummary({ countryData }) {
   return (
@@ -16,25 +17,25 @@ function CountrySummary({ countryData }) {
           />
         ) : null}
       </div>
-      <div className="stat-item">New Cases <span>{countryData.todayCases}</span></div>
-      <div className="stat-item">Cases Total <span>{countryData.cases}</span></div>
-      <div className="stat-item">Deaths Today <span>{countryData.todayDeaths}</span></div>
-      <div className="stat-item">Deaths Total <span>{countryData.deaths}</span></div>
+      <div className="stat-item">New Cases <span>{numeral(countryData.todayCases).format("0,0")}</span></div>
+      <div className="stat-item">Cases Total <span>{numeral(countryData.cases).format("0,0")}</span></div>
+      <div className="stat-item">Deaths Today <span>{numeral(countryData.todayDeaths).format("0,0")}</span></div>
+      <div className="stat-item">Deaths Total <span>{numeral(countryData.deaths).format("0,0")}</span></div>
       <div className="stat-item">
-        Recovered Today <span>{countryData.todayRecovered}</span>
+        Recovered Today <span>{numeral(countryData.todayRecovered).format("0,0")}</span>
       </div>
-      <div className="stat-item">Recovered Total <span>{countryData.recovered}</span></div>
+      <div className="stat-item">Recovered Total <span>{numeral(countryData.recovered).format("0,0")}</span></div>
       <div className="stat-item">
-        Currently Active Cases <span>{countryData.active}</span>
-      </div>
-      <div className="stat-item">
-        Currently Critical Cases <span>{countryData.critical}</span>
+        Currently Active Cases <span>{numeral(countryData.active).format("0,0")}</span>
       </div>
       <div className="stat-item">
-        Cases per Million <span>{countryData.casesPerOneMillion}</span>
+        Currently Critical Cases <span>{numeral(countryData.critical).format("0,0")}</span>
       </div>
       <div className="stat-item">
-        Deaths per Million <span>{countryData.deathsPerOneMillion}</span>
+        Cases per Million <span>{numeral(countryData.casesPerOneMillion).format("0,0")}</span>
+      </div>
+      <div className="stat-item">
+        Deaths per Million <span>{numeral(countryData.deathsPerOneMillion).format("0,0")}</span>
       </div>
       <div className="stat-item">
         Cases as Percent of Pop <span>{Math.round((countryData.cases / countryData.population) * 100)}%</span>
