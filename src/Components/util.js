@@ -45,7 +45,7 @@ const typeColors = {
     },
     percentage: {
         color: "#4634eb",
-        multiplier: 200000,
+        multiplier: 100000,
     },
 }
 

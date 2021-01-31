@@ -34,8 +34,6 @@
   display: flex;
   justify-content: space-evenly;
   width: 65vw;
-  font-size: 1.3rem;
-  font-weight: 500;
 }
 
 @media (max-width: 800px) {
@@ -46,6 +44,7 @@
   .details {
     flex-direction: column;
     width: 100%;
+    align-items: center;
   }
   .map-container {
     width: 90vw;
