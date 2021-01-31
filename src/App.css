@@ -1,9 +1,17 @@
+:root {
+  --primary: #e8e8e8;
+  --secondary: #222831;
+  --tertiary: #30475e;
+  --quaternary: #f05454;
+  --quinary: rgb(14, 120, 124);
+}
+
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(31, 31, 31);
-  color: white;
+  background-color: var(--primary);
+  color: var(--secondary);
 }
 
 .App-header {
@@ -36,7 +44,220 @@
   width: 65vw;
 }
 
+/* country list */
+.CountriesList {
+  margin: 40px;
+}
+
+.list-container {
+  max-height: 700px;
+  overflow-y: scroll;
+  text-align: left;
+  min-width: 320px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: rgba(172, 172, 172, 0.61);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.list-country-data {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 10px 5px 10px;
+  font-size: 1.3rem;
+  line-height: 2rem;
+  padding: 5px;
+}
+
+.button:hover {
+  background-color: rgba(187, 187, 187, 0.527);
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 0 0px 5px 1px rgba(187, 187, 187, 0.527);
+}
+
+/* country summary styling */
+.country-summary-container {
+  margin: 40px;
+  min-width: 380px;
+  max-width: 500px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: rgba(172, 172, 172, 0.61);
+  border-radius: 5px;
+  padding: 10px;
+  height: 100%;
+}
+
+.country-name h2{
+  margin: 0px;
+}
+
+.country-name img{
+  margin: 10px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.stat-item:hover {
+  background-color: rgba(187, 187, 187, 0.527);
+  border-radius: 3px;
+  box-shadow: 0 0px 5px 1px rgba(187, 187, 187, 0.527);
+}
+
+
+/* dropdown menu styling */
+.dropbtn {
+  background-color: rgba(14, 120, 124, 0.904);
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.2rem;
+  width: 200px;
+  color: white;
+  margin: 0px 10px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  max-height: 65vh;
+  overflow-y: scroll;
+  display: none;
+  position: absolute;
+  background-color: rgba(41, 41, 41, 0.95);
+  color: white;
+  width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  margin: 0px 10px;
+}
+
+.dropdown-content::-webkit-scrollbar {
+  width: 12px;
+}
+
+.dropdown-content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0);
+  border-radius: 10px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.type::-webkit-scrollbar {
+  display: none;
+}
+
+.dropdown-content div {
+  padding: 5px;
+  font-size: 1rem;
+  display: block;
+}
+
+.dropdown-content div:hover {
+  background-color: rgba(14, 120, 124, 0.671);
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: rgba(14, 120, 124, 0.68);
+  cursor: pointer;
+}
+
+.map {
+  height: 450px;
+  width: 100%;
+}
+
+.map .leaflet-container {
+  height: 100%;
+  border-radius: 5px;
+}
+
+
+/* Searchbox styling */
+*:focus {
+  outline: none;
+}
+
+input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.2rem;
+  color: rgb(255, 255, 255);
+  background-color: rgba(126, 126, 126, 0.733);
+  width: 200px;
+  margin: 0px 10px;
+}
+
+input::placeholder {
+  color: rgb(255, 255, 255);
+}
+
+input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.search-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.search-dropdown-content {
+  max-height: 100vh;
+  overflow-y: scroll;
+  display: block;
+  position: absolute;
+  background-color: rgba(41, 41, 41, 0.75);
+  color: white;
+  width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  margin: 0px 10px;
+}
+
+.search-dropdown-content::-webkit-scrollbar {
+  display: none;
+}
+
+.search-dropdown-content div {
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.search-dropdown-content div:hover {
+  background-color: rgba(214, 191, 181, 0.226);
+  cursor: pointer;
+}
+
+.search-dropdown:hover input {
+  background-color: rgba(63, 63, 63, 0.63);
+}
+
+/* media queries */
 @media (max-width: 800px) {
+  input {
+    width: 100%;
+    margin: 0px 0px 5px 0px;
+  }
+  .search-dropdown-content {
+    width: 100%;
+    margin-top: -5px;
+  }
   .App-nav {
     display: grid;
     grid-template-columns: 420px;
