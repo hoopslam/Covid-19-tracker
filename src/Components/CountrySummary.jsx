@@ -1,5 +1,4 @@
 import React from "react";
-import "./CountrySummary.css";
 import numeral from "numeral";
 
 function CountrySummary({ countryData }) {

@@ -1,5 +1,4 @@
 import React , {useState} from 'react';
-import "./Searchbox.css";
 
 function Searchbox({ selectChange, countriesNames }) {
     const [filteredCountries, setFilteredCountries] = useState([]);

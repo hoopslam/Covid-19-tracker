@@ -1,5 +1,4 @@
 import React from "react";
-import "./CountriesList.css";
 import numeral from "numeral";
 
 function CountriesList({ typeData, selectChange }) {

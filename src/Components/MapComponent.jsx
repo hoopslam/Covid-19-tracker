@@ -1,6 +1,5 @@
 import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import "./MapComponent.css";
 import ChangeView from "./ChangeView";
 import makeCircle from "./util";
 

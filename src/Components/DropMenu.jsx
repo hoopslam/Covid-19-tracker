@@ -1,5 +1,4 @@
 import React from 'react'
-import "./DropMenu.css"
 
 function DropMenu({countryNames, selectedCountry, selectChange}) {
     return (
