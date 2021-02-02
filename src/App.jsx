@@ -39,6 +39,7 @@ function App() {
         countriesJson
           .map((country) => ({
             country: country.country,
+            iso3: country.countryInfo.iso3,
             cat: "todayCases",
             type: country.todayCases,
             lat: country.countryInfo.lat,
@@ -71,16 +72,18 @@ function App() {
 
   //function to handle datatype change from dropdown menu
   const onSelectedTypeChange = (selected) => {
-    if(selected.target.dataset.value === 'percentage'){
+    if (selected.target.dataset.value === "percentage") {
       setTypeData(
         countriesData
           .map((country) => ({
             country: country.country,
+            iso3: country.countryInfo.iso3,
             cat: selected.target.dataset.value,
-            type: Math.round((country.cases / country.population) * 10000)/100,
+            type:
+              Math.round((country.cases / country.population) * 10000) / 100,
             lat: country.countryInfo.lat,
             lng: country.countryInfo.long,
-            flag: country.countryInfo.flag
+            flag: country.countryInfo.flag,
           }))
           .sort((a, b) => b.type - a.type)
       );
@@ -89,11 +92,12 @@ function App() {
         countriesData
           .map((country) => ({
             country: country.country,
+            iso3: country.countryInfo.iso3,
             cat: selected.target.dataset.value,
             type: country[selected.target.dataset.value],
             lat: country.countryInfo.lat,
             lng: country.countryInfo.long,
-            flag: country.countryInfo.flag
+            flag: country.countryInfo.flag,
           }))
           .sort((a, b) => b.type - a.type)
       );
@@ -106,26 +110,26 @@ function App() {
       <header className="App-header">
         <h1 className="App_title">Covid-19 Tracker</h1>
         <div className="map-container">
-          <MapComponent center={center} zoom={zoom} typeData={typeData}/>
+          <MapComponent center={center} zoom={zoom} typeData={typeData} />
         </div>
       </header>
       <nav className="App-nav">
-          <Searchbox
-            countriesNames={countriesNames}
-            selectChange={onSelectedCountryChange}
-          />
-          <div className="menu-container">
-        <DropMenu
-          countryNames={countriesNames}
-          selectedCountry={selectedCountry}
+        <Searchbox
+          countriesNames={countriesNames}
           selectChange={onSelectedCountryChange}
         />
-        <DataType
-          selectedType={selectedTypeMenu}
-          selectedTypeChange={onSelectedTypeChange}
-        />
-      </div>
-        </nav>
+        <div className="menu-container">
+          <DropMenu
+            countryNames={countriesNames}
+            selectedCountry={selectedCountry}
+            selectChange={onSelectedCountryChange}
+          />
+          <DataType
+            selectedType={selectedTypeMenu}
+            selectedTypeChange={onSelectedTypeChange}
+          />
+        </div>
+      </nav>
 
       <section className="details">
         {countryData ? (

@@ -3,8 +3,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import ChangeView from "./ChangeView";
 import makeCircle from "./util";
 
-function MapComponent({ center, zoom, typeData}) {
-
+function MapComponent({ center, zoom, typeData }) {
   return (
     <div className="map">
       <MapContainer center={center} zoom={zoom} scrollWheelZoom={false}>

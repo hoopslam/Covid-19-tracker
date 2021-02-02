@@ -1,6 +1,6 @@
 :root {
   --primary: #e8e8e8;
-  --secondary: rgb(41,41,41);
+  --secondary: rgb(41, 41, 41);
   --tertiary: #1673ff;
   --quaternary: #ff1616;
   --quinary: rgb(13, 133, 59);
@@ -53,8 +53,9 @@
   max-height: 700px;
   overflow-y: scroll;
   text-align: left;
-  min-width: 320px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  min-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: var(--secondary);
   border-radius: 5px;
   padding: 10px;
@@ -63,18 +64,28 @@
 
 .list-country-data {
   display: flex;
-  justify-content: space-between;
-  margin: 0px 10px 5px 10px;
   font-size: 1.3rem;
-  padding: 3px;
+  width: 100%;
+  justify-content: left;
 }
 
-.button:hover {
+.list-country-data:hover {
   background-color: var(--primary);
   color: var(--secondary);
   cursor: pointer;
   border-radius: 3px;
   box-shadow: 0 0px 5px 1px rgba(187, 187, 187, 0.527);
+}
+
+.button-right {
+  display: flex;
+  align-items: center;
+  animation-name: bar-animation;
+  animation-duration: 2s;
+}
+
+.list-bar {
+  background-color: var(--tertiary);
 }
 
 .list-container::-webkit-scrollbar {
@@ -94,9 +105,9 @@
 /* country summary styling */
 .country-summary-container {
   margin: 40px;
-  min-width: 380px;
+  min-width: 400px;
   max-width: 500px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: var(--secondary);
   color: var(--primary);
   border-radius: 5px;
@@ -104,12 +115,12 @@
   height: 100%;
 }
 
-.country-name h2{
+.country-name h2 {
   margin: 0px 0px 10px 0px;
-  color: var(--primary)
+  color: var(--primary);
 }
 
-.country-name img{
+.country-name img {
   margin-bottom: 10px;
 }
 
@@ -183,7 +194,7 @@
 }
 
 .dropdown-content div:hover {
-  background-color:#1673ff8a;
+  background-color: #1673ff8a;
   cursor: pointer;
 }
 
@@ -205,7 +216,6 @@
   height: 100%;
   border-radius: 5px;
 }
-
 
 /* Searchbox styling */
 *:focus {
@@ -264,7 +274,7 @@ input::-webkit-search-cancel-button {
 }
 
 .search-dropdown:hover input {
-  background-color: rgba(41, 41, 41, .8);
+  background-color: rgba(41, 41, 41, 0.8);
 }
 
 /* media queries */
@@ -288,5 +298,14 @@ input::-webkit-search-cancel-button {
   }
   .map-container {
     width: 90vw;
+  }
+}
+
+@keyframes bar-animation {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
   }
 }
