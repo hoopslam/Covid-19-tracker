@@ -278,7 +278,7 @@ input::-webkit-search-cancel-button {
 }
 
 /* media queries */
-@media (max-width: 800px) {
+@media (max-width: 990px) {
   input {
     width: 100%;
     margin: 0px 0px 5px 0px;
@@ -295,6 +295,7 @@ input::-webkit-search-cancel-button {
     flex-direction: column;
     width: 100%;
     align-items: center;
+    justify-content: center;
   }
   .map-container {
     width: 90vw;

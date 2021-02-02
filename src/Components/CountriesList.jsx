@@ -11,7 +11,7 @@ function CountriesList({ typeData, selectChange }) {
             className="list-country-data"
             onClick={() => selectChange(country.country)}
           >
-            <div className="button-left" style={{ width: "60px" }}>
+            <div className="button-left" style={{ width: "70px" }}>
               {country.iso3}
             </div>
             <div className="button-right" style={{ width: "100%" }} key={country.type}>
