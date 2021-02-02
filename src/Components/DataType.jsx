@@ -80,7 +80,7 @@ function DataType({ selectedType, selectedTypeChange }) {
           onClick={selectedTypeChange}
           data-value="percentage"
         >
-          Cases as % of Pop
+          Infection Rate
         </div>
       </div>
     </div>

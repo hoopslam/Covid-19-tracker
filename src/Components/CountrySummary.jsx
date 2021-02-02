@@ -17,18 +17,18 @@ function CountrySummary({ countryData }) {
         ) : null}
       </div>
       <div className="stat-item">New Cases <span>{numeral(countryData.todayCases).format("0,0")}</span></div>
-      <div className="stat-item">Cases Total <span>{numeral(countryData.cases).format("0,0")}</span></div>
+      <div className="stat-item">Total Cases<span>{numeral(countryData.cases).format("0,0")}</span></div>
       <div className="stat-item">Deaths Today <span>{numeral(countryData.todayDeaths).format("0,0")}</span></div>
-      <div className="stat-item">Deaths Total <span>{numeral(countryData.deaths).format("0,0")}</span></div>
+      <div className="stat-item">Total Deaths <span>{numeral(countryData.deaths).format("0,0")}</span></div>
       <div className="stat-item">
         Recovered Today <span>{numeral(countryData.todayRecovered).format("0,0")}</span>
       </div>
-      <div className="stat-item">Recovered Total <span>{numeral(countryData.recovered).format("0,0")}</span></div>
+      <div className="stat-item">Total Recovered<span>{numeral(countryData.recovered).format("0,0")}</span></div>
       <div className="stat-item">
-        Currently Active Cases <span>{numeral(countryData.active).format("0,0")}</span>
+        Active Cases <span>{numeral(countryData.active).format("0,0")}</span>
       </div>
       <div className="stat-item">
-        Currently Critical Cases <span>{numeral(countryData.critical).format("0,0")}</span>
+        Critical Cases <span>{numeral(countryData.critical).format("0,0")}</span>
       </div>
       <div className="stat-item">
         Cases per Million <span>{numeral(countryData.casesPerOneMillion).format("0,0")}</span>
@@ -37,7 +37,7 @@ function CountrySummary({ countryData }) {
         Deaths per Million <span>{numeral(countryData.deathsPerOneMillion).format("0,0")}</span>
       </div>
       <div className="stat-item">
-        Cases as Percent of Pop <span>{Math.round((countryData.cases / countryData.population) * 100)}%</span>
+        Infection Rate<span>{Math.round((countryData.cases / countryData.population) * 100)}%</span>
       </div>
     </div>
   );
