@@ -40,12 +40,15 @@ function App() {
           .map((country) => ({
             country: country.country,
             iso3: country.countryInfo.iso3,
+            iso2: country.countryInfo.iso2,
+            id: country.countryInfo._id,
             cat: "todayCases",
-            type: country.todayCases,
+            typeValue: country.todayCases,
+            type: "New Cases",
             lat: country.countryInfo.lat,
             lng: country.countryInfo.long,
           }))
-          .sort((a, b) => b.type - a.type)
+          .sort((a, b) => b.typeValue - a.typeValue)
       );
     }
     fetchData();
@@ -72,36 +75,23 @@ function App() {
 
   //function to handle datatype change from dropdown menu
   const onSelectedTypeChange = (selected) => {
-    if (selected.target.dataset.value === "percentage") {
-      setTypeData(
-        countriesData
-          .map((country) => ({
-            country: country.country,
-            iso3: country.countryInfo.iso3,
-            cat: selected.target.dataset.value,
-            type:
-              Math.round((country.cases / country.population) * 10000) / 100,
-            lat: country.countryInfo.lat,
-            lng: country.countryInfo.long,
-            flag: country.countryInfo.flag,
-          }))
-          .sort((a, b) => b.type - a.type)
-      );
-    } else {
-      setTypeData(
-        countriesData
-          .map((country) => ({
-            country: country.country,
-            iso3: country.countryInfo.iso3,
-            cat: selected.target.dataset.value,
-            type: country[selected.target.dataset.value],
-            lat: country.countryInfo.lat,
-            lng: country.countryInfo.long,
-            flag: country.countryInfo.flag,
-          }))
-          .sort((a, b) => b.type - a.type)
-      );
-    }
+    console.log(selected)
+    setTypeData(
+      countriesData
+        .map((country) => ({
+          country: country.country,
+          iso3: country.countryInfo.iso3,
+          iso2: country.countryInfo.iso2,
+          id: country.countryInfo._id,
+          cat: selected.target.dataset.value,
+          typeValue: country[selected.target.dataset.value],
+          type: selected.target.innerText,
+          lat: country.countryInfo.lat,
+          lng: country.countryInfo.long,
+          flag: country.countryInfo.flag,
+        }))
+        .sort((a, b) => b.typeValue - a.typeValue)
+    );
     setSelectedTypeMenu(selected.target.innerText);
   };
 

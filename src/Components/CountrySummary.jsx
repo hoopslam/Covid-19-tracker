@@ -37,7 +37,16 @@ function CountrySummary({ countryData }) {
         Deaths per Million <span>{numeral(countryData.deathsPerOneMillion).format("0,0")}</span>
       </div>
       <div className="stat-item">
+        Population <span>{numeral(countryData.population).format("0,0")}</span>
+      </div>
+      <div className="stat-item">
         Infection Rate<span>{Math.round((countryData.cases / countryData.population) * 100)}%</span>
+      </div>
+      <div className="stat-item">
+        Recovery Rate<span>{Math.round((countryData.recovered / countryData.cases) * 100)}%</span>
+      </div>
+      <div className="stat-item">
+        Death Rate<span>{Math.round((countryData.deaths / countryData.cases) * 100)}%</span>
       </div>
     </div>
   );

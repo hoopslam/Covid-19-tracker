@@ -75,13 +75,6 @@ function DataType({ selectedType, selectedTypeChange }) {
         >
           Deaths per Million
         </div>
-        <div
-          className="menuItem"
-          onClick={selectedTypeChange}
-          data-value="percentage"
-        >
-          Infection Rate
-        </div>
       </div>
     </div>
   );

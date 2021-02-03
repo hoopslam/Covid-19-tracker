@@ -43,26 +43,24 @@ export const typeColors = {
         color: "#eb3434",
         multiplier: 5000,
     },
-    percentage: {
-        color: "#1673ff",
-        multiplier: 100000,
-    },
 }
 
 export const makeCircle = (typeData) => {
     return typeData.map(country => (
+        country.iso2? 
         <Circle
           center={[country.lat, country.lng]}
           pathOptions={{color: typeColors[country.cat].color,
                         fillColor: typeColors[country.cat].color}}
           fillOpacity={0.5}
-          radius={Math.sqrt(country.type) * typeColors[country.cat].multiplier}
+          radius={Math.sqrt(country.typeValue) * typeColors[country.cat].multiplier}
+          key={country.iso2}
         >
             <Popup>
                 <div className="popup">{country.country}</div>
-                <div className="popup">{numeral(country.type).format("0,0")}</div>
+                <div className="popup">{numeral(country.typeValue).format("0,0")}</div>
             </Popup>
-        </Circle>
+        </Circle> : null
         ))
 }
 
