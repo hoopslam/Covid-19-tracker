@@ -7,7 +7,7 @@ import MapComponent from "./Components/MapComponent";
 import CountrySummary from "./Components/CountrySummary";
 import CountriesList from "./Components/CountriesList";
 import "leaflet/dist/leaflet.css";
-import fetchHistoricalData from "./Components/fetchHistorical";
+import {filterTypeData} from "./Components/util";
 
 function App() {
   const [countriesData, setCountriesData] = useState([]);
@@ -21,44 +21,27 @@ function App() {
   const [zoom, setZoom] = useState(2);
   const [historicalData, setHistoricalData] = useState();
 
-  // On pageload, fetch yesterday's data and set in state
+  // On pageload, fetch yesterday's data and set in App state
   useEffect(() => {
-    async function fetchData() {
-      const countriesResponse = await fetch(
-        "https://disease.sh/v3/covid-19/countries?yesterday=true"
-      );
-      const countriesJson = await countriesResponse.json();
-      const worldResponse = await fetch(
-        "https://disease.sh/v3/covid-19/all?yesterday=true"
-      );
-      const worldJson = await worldResponse.json();
+    const fetchData = async() => {
+      const fetchedDataCountries = await fetch("https://disease.sh/v3/covid-19/countries?yesterday=true")
+      .then(response => response.json());
+      const fetchedDataGlobal = await fetch("https://disease.sh/v3/covid-19/all?yesterday=true")
+      .then(response => response.json());
+      const fetchedHistoricalDataGlobal = await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=all")
+      .then(response => response.json());
 
-      setCountriesData(countriesJson);
-      setWorldData(worldJson);
-      setCountriesNames(countriesJson.map((country) => country.country));
-      setCountryData(() => worldJson);
-      setTypeData(
-        countriesJson
-          .map((country) => ({
-            country: country.country,
-            iso3: country.countryInfo.iso3,
-            iso2: country.countryInfo.iso2,
-            id: country.countryInfo._id,
-            cat: "todayCases",
-            typeValue: country.todayCases,
-            type: "New Cases",
-            lat: country.countryInfo.lat,
-            lng: country.countryInfo.long,
-          }))
-          .sort((a, b) => b.typeValue - a.typeValue)
-      );
-      setHistoricalData(await fetchHistoricalData("Worldwide"))
+      setCountriesData(fetchedDataCountries);
+      setWorldData(fetchedDataGlobal);
+      setHistoricalData(fetchedHistoricalDataGlobal);
+      setCountriesNames(fetchedDataCountries.map(country => country.country));
+      setCountryData(fetchedDataGlobal);
+      setTypeData(filterTypeData(fetchedDataCountries))
     }
     fetchData();
   }, []);
-  console.log(historicalData)
 
-  //function to handle country change
+  //country change handler
   const onSelectedCountryChange = (selected) => {
     if (selected === "Worldwide") {
       setCenter({ lat: 15, lng: 0 });
@@ -66,9 +49,7 @@ function App() {
       setCountryData(worldData);
       setSelectedCountry("Worldwide");
     } else {
-      let countryStats = countriesData.find((country) => {
-        return country.country === selected;
-      });
+      let countryStats = countriesData.find(country => country.country === selected);
       setCountryData(countryStats);
       setCenter([countryStats.countryInfo.lat, countryStats.countryInfo.long]);
       setZoom(4);
@@ -78,23 +59,7 @@ function App() {
 
   //function to handle datatype change from dropdown menu
   const onSelectedTypeChange = (selected) => {
-    console.log(selected)
-    setTypeData(
-      countriesData
-        .map((country) => ({
-          country: country.country,
-          iso3: country.countryInfo.iso3,
-          iso2: country.countryInfo.iso2,
-          id: country.countryInfo._id,
-          cat: selected.target.dataset.value,
-          typeValue: country[selected.target.dataset.value],
-          type: selected.target.innerText,
-          lat: country.countryInfo.lat,
-          lng: country.countryInfo.long,
-          flag: country.countryInfo.flag,
-        }))
-        .sort((a, b) => b.typeValue - a.typeValue)
-    );
+    setTypeData(filterTypeData(countriesData, selected));
     setSelectedTypeMenu(selected.target.innerText);
   };
 
