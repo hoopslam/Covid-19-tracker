@@ -72,4 +72,16 @@ export const makeCircle = (typeData) => {
   );
 };
 
-export default makeCircle;
+export const filterTypeData = (countriesData, selected={target: {dataset: {value: "todayCases"}, innerText: "New Cases"}}) => (
+  countriesData.map(country => ({
+    country: country.country,
+    iso3: country.countryInfo.iso3,
+    iso2: country.countryInfo.iso2,
+    id: country.countryInfo._id,
+    cat: selected.target.dataset.value,
+    typeValue: country[selected.target.dataset.value],
+    type: selected.target.innerText,
+    lat: country.countryInfo.lat,
+    lng: country.countryInfo.long,
+  }))
+  .sort((a, b) => b.typeValue - a.typeValue))
