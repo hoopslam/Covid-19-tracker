@@ -7,6 +7,7 @@ import MapComponent from "./Components/MapComponent";
 import CountrySummary from "./Components/CountrySummary";
 import CountriesList from "./Components/CountriesList";
 import "leaflet/dist/leaflet.css";
+import fetchHistoricalData from "./Components/fetchHistorical";
 
 function App() {
   const [countriesData, setCountriesData] = useState([]);
@@ -18,6 +19,7 @@ function App() {
   const [typeData, setTypeData] = useState([]);
   const [center, setCenter] = useState({ lat: 15, lng: 0 });
   const [zoom, setZoom] = useState(2);
+  const [historicalData, setHistoricalData] = useState();
 
   // On pageload, fetch yesterday's data and set in state
   useEffect(() => {
@@ -50,12 +52,13 @@ function App() {
           }))
           .sort((a, b) => b.typeValue - a.typeValue)
       );
+      setHistoricalData(await fetchHistoricalData("Worldwide"))
     }
     fetchData();
-    console.log("fetching");
   }, []);
+  console.log(historicalData)
 
-  //function to handle country change from dropdown menu
+  //function to handle country change
   const onSelectedCountryChange = (selected) => {
     if (selected === "Worldwide") {
       setCenter({ lat: 15, lng: 0 });
