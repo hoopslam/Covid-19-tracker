@@ -1,76 +1,76 @@
 import React from "react";
 
-function DataType({ selectedType, selectedTypeChange }) {
+function TypeSelector({selectedDataType, typeChangeHandler }) {
   return (
     <div className="dropdown">
-      <button className="dropbtn">{selectedType}</button>
+      <button className="dropbtn">{selectedDataType}</button>
       <div className="dropdown-content type">
-        <div
+      <div
           className="menuItem"
-          onClick={selectedTypeChange}
-          data-value="todayCases"
+          onClick={typeChangeHandler}
+          data-value="active"
         >
-          New Cases
+          Active Cases
         </div>
         <div
           className="menuItem"
-          onClick={selectedTypeChange}
+          onClick={typeChangeHandler}
+          data-value="critical"
+        >
+          Critical Cases
+        </div>
+        <div
+          className="menuItem"
+          onClick={typeChangeHandler}
+          data-value="todayCases"
+        >
+          Cases Today
+        </div>
+        <div
+          className="menuItem"
+          onClick={typeChangeHandler}
           data-value="cases"
         >
           Total Cases
         </div>
         <div
           className="menuItem"
-          onClick={selectedTypeChange}
+          onClick={typeChangeHandler}
           data-value="todayDeaths"
         >
           Deaths Today
         </div>
         <div
           className="menuItem"
-          onClick={selectedTypeChange}
+          onClick={typeChangeHandler}
           data-value="deaths"
         >
           Total Deaths
         </div>
         <div
           className="menuItem"
-          onClick={selectedTypeChange}
+          onClick={typeChangeHandler}
           data-value="todayRecovered"
         >
           Recovered Today
         </div>
         <div
           className="menuItem"
-          onClick={selectedTypeChange}
+          onClick={typeChangeHandler}
           data-value="recovered"
         >
           Total Recovered
         </div>
         <div
           className="menuItem"
-          onClick={selectedTypeChange}
-          data-value="active"
-        >
-          Currently Active Cases
-        </div>
-        <div
-          className="menuItem"
-          onClick={selectedTypeChange}
-          data-value="critical"
-        >
-          Currently Critical Cases
-        </div>
-        <div
-          className="menuItem"
-          onClick={selectedTypeChange}
+          onClick={typeChangeHandler}
           data-value="casesPerOneMillion"
         >
           Cases per Million
         </div>
         <div
           className="menuItem"
-          onClick={selectedTypeChange}
+          onClick={typeChangeHandler}
           data-value="deathsPerOneMillion"
         >
           Deaths per Million
@@ -80,4 +80,4 @@ function DataType({ selectedType, selectedTypeChange }) {
   );
 }
 
-export default DataType;
+export default TypeSelector;

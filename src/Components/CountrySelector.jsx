@@ -1,17 +1,17 @@
 import React from 'react'
 
-function DropMenu({countryNames, selectedCountry, selectChange}) {
+function CountrySelector({countryNames, countryChangeHandler, selectedCountry}) {
     return (
         <div className="dropdown">
             <button className="dropbtn">{selectedCountry? `${selectedCountry}`:"Select Country"}</button>
             <div className="dropdown-content">
-                <div className="menuItem" onClick={() => selectChange("Worldwide")}>Worldwide</div>
+                <div className="menuItem" onClick={() => countryChangeHandler("Worldwide")}>Worldwide</div>
                 {countryNames.map((country, i) => (
-                    <div className="menuItem" key={i} onClick={() => selectChange(country)}>{country}</div>
+                    <div className="menuItem" key={i} onClick={() => countryChangeHandler(country)}>{country}</div>
                 ))}
             </div>
         </div>
     )
 }
 
-export default DropMenu
+export default CountrySelector

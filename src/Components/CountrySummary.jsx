@@ -1,52 +1,52 @@
 import React from "react";
 import numeral from "numeral";
 
-function CountrySummary({ countryData }) {
+function CountrySummary({ selectedCountryInfo }) {
   return (
     <div className="country-summary-container">
       <div className="country-name">
         <h2>
-          {countryData.country ? countryData.country : "Worldwide Summary"}
+          {selectedCountryInfo.country ? selectedCountryInfo.country : "Worldwide Summary"}
         </h2>
-        {countryData.countryInfo ? (
+        {selectedCountryInfo.countryInfo.flag ? (
           <img
-            src={countryData.countryInfo.flag}
+            src={selectedCountryInfo.countryInfo.flag}
             alt="flag"
             style={{ height: "70px", width: "auto" }}
           />
         ) : null}
       </div>
-      <div className="stat-item">New Cases <span>{numeral(countryData.todayCases).format("0,0")}</span></div>
-      <div className="stat-item">Total Cases<span>{numeral(countryData.cases).format("0,0")}</span></div>
-      <div className="stat-item">Deaths Today <span>{numeral(countryData.todayDeaths).format("0,0")}</span></div>
-      <div className="stat-item">Total Deaths <span>{numeral(countryData.deaths).format("0,0")}</span></div>
+      <div className="stat-item">New Cases <span>{numeral(selectedCountryInfo.todayCases).format("0,0")}</span></div>
+      <div className="stat-item">Total Cases<span>{numeral(selectedCountryInfo.cases).format("0,0")}</span></div>
+      <div className="stat-item">Deaths Today <span>{numeral(selectedCountryInfo.todayDeaths).format("0,0")}</span></div>
+      <div className="stat-item">Total Deaths <span>{numeral(selectedCountryInfo.deaths).format("0,0")}</span></div>
       <div className="stat-item">
-        Recovered Today <span>{numeral(countryData.todayRecovered).format("0,0")}</span>
+        Recovered Today <span>{numeral(selectedCountryInfo.todayRecovered).format("0,0")}</span>
       </div>
-      <div className="stat-item">Total Recovered<span>{numeral(countryData.recovered).format("0,0")}</span></div>
+      <div className="stat-item">Total Recovered<span>{numeral(selectedCountryInfo.recovered).format("0,0")}</span></div>
       <div className="stat-item">
-        Active Cases <span>{numeral(countryData.active).format("0,0")}</span>
-      </div>
-      <div className="stat-item">
-        Critical Cases <span>{numeral(countryData.critical).format("0,0")}</span>
+        Active Cases <span>{numeral(selectedCountryInfo.active).format("0,0")}</span>
       </div>
       <div className="stat-item">
-        Cases per Million <span>{numeral(countryData.casesPerOneMillion).format("0,0")}</span>
+        Critical Cases <span>{numeral(selectedCountryInfo.critical).format("0,0")}</span>
       </div>
       <div className="stat-item">
-        Deaths per Million <span>{numeral(countryData.deathsPerOneMillion).format("0,0")}</span>
+        Cases per Million <span>{numeral(selectedCountryInfo.casesPerOneMillion).format("0,0")}</span>
       </div>
       <div className="stat-item">
-        Population <span>{numeral(countryData.population).format("0,0")}</span>
+        Deaths per Million <span>{numeral(selectedCountryInfo.deathsPerOneMillion).format("0,0")}</span>
       </div>
       <div className="stat-item">
-        Infection Rate<span>{Math.round((countryData.cases / countryData.population) * 100)}%</span>
+        Population <span>{numeral(selectedCountryInfo.population).format("0,0")}</span>
       </div>
       <div className="stat-item">
-        Recovery Rate<span>{Math.round((countryData.recovered / countryData.cases) * 100)}%</span>
+        Infection Rate<span>{Math.round((selectedCountryInfo.cases / selectedCountryInfo.population) * 100)}%</span>
       </div>
       <div className="stat-item">
-        Death Rate<span>{Math.round((countryData.deaths / countryData.cases) * 100)}%</span>
+        Recovery Rate<span>{Math.round((selectedCountryInfo.recovered / selectedCountryInfo.cases) * 100)}%</span>
+      </div>
+      <div className="stat-item">
+        Death Rate<span>{Math.round((selectedCountryInfo.deaths / selectedCountryInfo.cases) * 100)}%</span>
       </div>
     </div>
   );

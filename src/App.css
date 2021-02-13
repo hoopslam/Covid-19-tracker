@@ -14,7 +14,7 @@
   color: var(--secondary);
 }
 
-.App-header {
+.LoadedApp-header {
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -23,8 +23,9 @@
   font-size: calc(10px + 2vmin);
 }
 
-.App-nav {
+.LoadedApp-nav {
   display: flex;
+  justify-content: center;
 }
 
 .menu-container {
@@ -117,7 +118,6 @@
   color: var(--primary);
   border-radius: 5px;
   padding: 10px;
-  height: 100%;
 }
 
 .country-name h2 {
@@ -292,7 +292,7 @@ input::-webkit-search-cancel-button {
     width: 100%;
     margin-top: -5px;
   }
-  .App-nav {
+  .LoadedApp-nav {
     display: grid;
     grid-template-columns: 420px;
   }
