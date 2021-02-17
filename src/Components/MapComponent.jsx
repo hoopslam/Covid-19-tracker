@@ -4,8 +4,8 @@ import ChangeView from "./ChangeView";
 import { makeCircle } from "./util";
 import Loader from "./Loader";
 
-function MapComponent({selectedDataTypeData, mapCenter, selectedCountry}) {
-	let zoom = 3;
+function MapComponent({selectedDataTypeData, mapCenter, selectedCountry, countryChangeHandler}) {
+	let zoom = 4;
 	if(selectedCountry==="Worldwide"){
 		zoom = 2;
 	}
@@ -21,7 +21,7 @@ function MapComponent({selectedDataTypeData, mapCenter, selectedCountry}) {
 		<div className='map'>
 			<MapContainer center={mapCenter} zoom={zoom} scrollWheelZoom={false}>
 				<ChangeView center={mapCenter} zoom={zoom} />
-				{makeCircle(selectedDataTypeData)}
+				{makeCircle(selectedDataTypeData, countryChangeHandler)}
 				<TileLayer
 					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 					url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'

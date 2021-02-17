@@ -1,13 +1,11 @@
 import React from "react";
+import InfoCard from "./InfoCard";
 import numeral from "numeral";
 
-function CountrySummary({ selectedCountryInfo }) {
+function CountrySummary({ selectedCountryInfo, typeChangeHandler }) {
   return (
     <div className="country-summary-container">
       <div className="country-name">
-        <h2>
-          {selectedCountryInfo.country ? selectedCountryInfo.country : "Worldwide Summary"}
-        </h2>
         {selectedCountryInfo.countryInfo.flag ? (
           <img
             src={selectedCountryInfo.countryInfo.flag}
@@ -15,8 +13,27 @@ function CountrySummary({ selectedCountryInfo }) {
             style={{ height: "70px", width: "auto" }}
           />
         ) : null}
+        <h2>
+          {selectedCountryInfo.country ? selectedCountryInfo.country : "Worldwide Summary"}
+        </h2>
       </div>
-      <div className="stat-item">New Cases <span>{numeral(selectedCountryInfo.todayCases).format("0,0")}</span></div>
+      <div className="InfoCard-row">
+        <InfoCard text={"Total Cases"} total={selectedCountryInfo.cases} today={selectedCountryInfo.todayCases}/>
+        <InfoCard text={"Total Recovered"} total={selectedCountryInfo.recovered} today={selectedCountryInfo.todayRecovered} color={"rgb(31, 150, 77)"}/>
+        <InfoCard text={"Total Deaths"} total={selectedCountryInfo.deaths} today={selectedCountryInfo.todayDeaths} color={"#ec4a4ac2"}/>
+      </div>
+      
+      {/* 
+      Infection Rate Pie Graph
+      World Average
+      Death Rate Pie Graph
+      World Average
+
+      Line Graph Historical 
+       */}
+
+
+      {/* <div className="stat-item">New Cases <span>{numeral(selectedCountryInfo.todayCases).format("0,0")}</span></div>
       <div className="stat-item">Total Cases<span>{numeral(selectedCountryInfo.cases).format("0,0")}</span></div>
       <div className="stat-item">Deaths Today <span>{numeral(selectedCountryInfo.todayDeaths).format("0,0")}</span></div>
       <div className="stat-item">Total Deaths <span>{numeral(selectedCountryInfo.deaths).format("0,0")}</span></div>
@@ -47,7 +64,7 @@ function CountrySummary({ selectedCountryInfo }) {
       </div>
       <div className="stat-item">
         Death Rate<span>{Math.round((selectedCountryInfo.deaths / selectedCountryInfo.cases) * 100)}%</span>
-      </div>
+      </div> */}
     </div>
   );
 }

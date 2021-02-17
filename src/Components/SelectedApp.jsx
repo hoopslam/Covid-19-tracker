@@ -7,18 +7,21 @@ const SelectedApp = ({
 	selectedDataTypeData,
 	selectedDataType,
 	countryChangeHandler,
+	typeChangeHandler,
+	worldData
 }) => {
 	return (
 		<div className='SelectedApp'>
 			<div className='details'>
-				<section className='country-section'>
-					<CountrySummary selectedCountryInfo={selectedCountryInfo} />
+			<section className='country-section'>
+					<CountrySummary selectedCountryInfo={selectedCountryInfo} typeChangeHandler={typeChangeHandler}/>
 				</section>
 				<section className='type-list'>
 					<BarGraph
-						selectedDataType={selectedDataType.text}
+						selectedDataType={selectedDataType}
 						selectedDataTypeData={selectedDataTypeData}
 						countryChangeHandler={countryChangeHandler}
+						worldData={worldData}
 					/>
 				</section>
 			</div>

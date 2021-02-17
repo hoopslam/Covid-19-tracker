@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
-import Footer from "./Footer";
 import "leaflet/dist/leaflet.css";
 import SelectedApp from "./SelectedApp";
 import Selectors from "./Selectors";
-import MapComponent from "./MapComponent"
+import MapComponent from "./MapComponent";
 
 const LoadedApp = ({ globalData, countryNames }) => {
 	const [selectedCountry, setSelectedCountry] = useState("Worldwide");
@@ -25,6 +24,7 @@ const LoadedApp = ({ globalData, countryNames }) => {
 		setSelectedDataTypeData(
 			globalData.countries.map((country) => ({
 				country: country.country,
+				flag: country.countryInfo.flag,
 				id: country.countryInfo._id,
 				iso2: country.countryInfo.iso2,
 				iso3: country.countryInfo.iso3,
@@ -55,7 +55,7 @@ const LoadedApp = ({ globalData, countryNames }) => {
 		let data = {
 			text: selectedType.target.innerText,
 			dataType: selectedType.target.dataset.value,
-		}
+		};
 		setSelectedDataType(data);
 		makeDataTypeData(data);
 	};
@@ -78,15 +78,16 @@ const LoadedApp = ({ globalData, countryNames }) => {
 								lng: selectedCountryInfo.countryInfo.long,
 							}}
 							selectedCountry={selectedCountry}
+							countryChangeHandler={countryChangeHandler}
 						/>
 					</div>
 					<Selectors
-					countryChangeHandler={countryChangeHandler}
-					countryNames={countryNames}
-					selectedCountry={selectedCountry}
-					selectedDataType={selectedDataType}
-					typeChangeHandler={typeChangeHandler}
-				/>
+						countryChangeHandler={countryChangeHandler}
+						countryNames={countryNames}
+						selectedCountry={selectedCountry}
+						selectedDataType={selectedDataType}
+						typeChangeHandler={typeChangeHandler}
+					/>
 				</header>
 				<SelectedApp
 					selectedDataTypeData={selectedDataTypeData}
@@ -94,8 +95,9 @@ const LoadedApp = ({ globalData, countryNames }) => {
 					selectedCountry={selectedCountry}
 					selectedDataType={selectedDataType}
 					countryChangeHandler={countryChangeHandler}
+					typeChangeHandler={typeChangeHandler}
+					worldData={globalData.world[selectedDataType.dataType]}
 				/>
-				<Footer />
 			</div>
 		);
 	}

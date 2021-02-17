@@ -2,11 +2,17 @@ import React , {useState} from 'react';
 
 function SearchBar({ countryChangeHandler, countryNames }) {
     const [filteredCountries, setFilteredCountries] = useState([]);
+    const [inputValue, setInputValue] = useState("");
 
-    const handleKeyUp = (e) => {
+    const handleKeyUp = (e) => {  // Used to handle "Enter" without a button
         if (e.key === "Enter") { 
-            e.target.value ? filteredCountries && countryChangeHandler(filteredCountries[0]) && setFilteredCountries([]) : //set Selected country to whatever was at the top of the filtered search result
-            countryChangeHandler("Worldwide")
+            if(inputValue){
+                countryChangeHandler(filteredCountries[0])
+                setFilteredCountries([])
+            } else {
+                countryChangeHandler("Worldwide")
+            }
+            setInputValue("")
         } else {
             setFilteredCountries(
             countryNames.filter(country => {
@@ -15,16 +21,24 @@ function SearchBar({ countryChangeHandler, countryNames }) {
             )
         }
     }
+    const handleChange = (e) => {
+        setInputValue(e.target.value)
+    }
     return (
         <div className="search-dropdown">
-            <input 
+            <input
                 type="search" 
                 placeholder="Search Country" 
-                onKeyUp={handleKeyUp}
+                onKeyUp={handleKeyUp}  //Used because onChange doesn't handle "Enter" key press without a button.  I don't want a button so I am using keyup
+                onChange={handleChange}
+                value={inputValue}
             />
             <div className="search-dropdown-content">
                 {filteredCountries.length < 50 && filteredCountries.map((country, i) => (
-                    <div className="menuItem" key={i} onClick={() => countryChangeHandler(country)}>{country}</div>
+                    <div className="menuItem" key={i} onClick={() => {
+                        setInputValue("")
+                        setFilteredCountries([])
+                        countryChangeHandler(country)}}>{country}</div>
                 ))}
             </div>
         </div>

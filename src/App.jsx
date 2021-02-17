@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import LoadedApp from "./Components/LoadedApp";
 import Loader from "./Components/Loader";
+import Footer from "./Components/Footer";
 
 function App() {
 	const [globalData, setGlobalData] = useState({});
@@ -36,6 +37,7 @@ function App() {
 					globalData={globalData}
 					countryNames={globalData.countries.map((country) => country.country)}
 				/>
+				<Footer />
 			</div>
 		);
 	}
