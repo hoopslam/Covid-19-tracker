@@ -95,7 +95,6 @@ const LoadedApp = ({ globalData, countryNames }) => {
 					selectedCountry={selectedCountry}
 					selectedDataType={selectedDataType}
 					countryChangeHandler={countryChangeHandler}
-					typeChangeHandler={typeChangeHandler}
 					worldData={globalData.world[selectedDataType.dataType]}
 				/>
 			</div>
