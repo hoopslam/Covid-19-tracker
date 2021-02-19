@@ -13,38 +13,20 @@ function TypeSelector({ selectedDataType, typeChangeHandler }) {
 				<div className='menuItem' onClick={typeChangeHandler} data-value='active'>
 					Active Cases
 				</div>
-				<div className='menuItem' onClick={typeChangeHandler} data-value='critical'>
-					Critical Cases
-				</div>
-				<div className='menuItem' onClick={typeChangeHandler} data-value='todayCases'>
-					Cases Today
-				</div>
 				<div className='menuItem' onClick={typeChangeHandler} data-value='cases'>
 					Total Cases
-				</div>
-				<div className='menuItem' onClick={typeChangeHandler} data-value='todayDeaths'>
-					Deaths Today
 				</div>
 				<div className='menuItem' onClick={typeChangeHandler} data-value='deaths'>
 					Total Deaths
 				</div>
-				<div className='menuItem' onClick={typeChangeHandler} data-value='todayRecovered'>
-					Recovered Today
-				</div>
 				<div className='menuItem' onClick={typeChangeHandler} data-value='recovered'>
 					Total Recovered
 				</div>
-				<div
-					className='menuItem'
-					onClick={typeChangeHandler}
-					data-value='casesPerOneMillion'>
-					Cases per Million
+				<div className='menuItem' onClick={typeChangeHandler} data-value='tests'>
+					Tests Administered
 				</div>
-				<div
-					className='menuItem'
-					onClick={typeChangeHandler}
-					data-value='deathsPerOneMillion'>
-					Deaths per Million
+				<div className="menuItem" onClick={typeChangeHandler} data-value='countriesVaccine'>
+					Vaccines Administered
 				</div>
 			</div>
 		</div>

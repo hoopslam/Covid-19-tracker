@@ -1,6 +1,6 @@
 :root {
   --primary: #e8e8e8;
-  --secondary: rgb(24, 35, 54);
+  --secondary: rgb(28, 31, 36);
   --tertiary: #ff1616e0;
   --quaternary: rgba(24, 35, 54, 0.5);
 }
@@ -288,6 +288,10 @@ input::-webkit-search-cancel-button {
   color: grey;
 }
 
+.Donut-container {
+  margin-top: 40px;
+}
+
 /* Footer style */
 .Footer {
   background-color: var(--secondary);
@@ -316,7 +320,11 @@ input::-webkit-search-cancel-button {
     justify-content: center;
   }
   .map-container {
-    width: 90vw;
+    width: 95%;
+  }
+  .App {
+    width: 100%;
+    min-width: 550px;
   }
 }
 

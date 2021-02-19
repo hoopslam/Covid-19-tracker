@@ -4,31 +4,31 @@ import numeral from "numeral";
 
 export const typeColors = {
 	cases: {
-		color: "#ff7300",
+		color: "#ff1616e0",
 		multiplier: 300,
 	},
 	todayCases: {
-		color: "#ff7300",
+		color: "#ff1616e0",
 		multiplier: 2500,
 	},
 	deaths: {
 		color: "#ff1616e0",
-		multiplier: 2000,
+		multiplier: 1000,
 	},
 	todayDeaths: {
 		color: "#ff1616e0",
 		multiplier: 10000,
 	},
 	recovered: {
-		color: "rgb(31, 150, 77)",
+		color: "#0088ff",
 		multiplier: 300,
 	},
 	todayRecovered: {
-		color: "rgb(31, 150, 77)",
+		color: "#0088ff",
 		multiplier: 2000,
 	},
 	active: {
-		color: "#ff7300",
+		color: "#ff1616e0",
 		multiplier: 300,
 	},
 	critical: {
@@ -36,13 +36,21 @@ export const typeColors = {
 		multiplier: 4000,
 	},
 	casesPerOneMillion: {
-		color: "#ff7300",
+		color:"#ff1616e0",
 		multiplier: 500,
 	},
 	deathsPerOneMillion: {
 		color: "#ff1616e0",
 		multiplier: 5000,
 	},
+	tests: {
+		color: "#0088ff",
+		multiplier: 100
+	},
+	countriesVaccine: {
+		color: "#0088ff",
+		multiplier: 100
+	}
 };
 
 export const makeCircle = (selectedDataTypeData, countryChangeHandler) => {
@@ -56,7 +64,7 @@ export const makeCircle = (selectedDataTypeData, countryChangeHandler) => {
 						fillColor: typeColors[country.cat].color,
 					}}
 					fillOpacity={0.5}
-					radius={Math.sqrt(country.typeValue) * typeColors[country.cat].multiplier}
+					radius={typeColors[country.cat].multiplier * Math.sqrt((country.typeValue / Math.PI))}
 					key={country.iso2}
 					eventHandlers={{
 						click: () => {

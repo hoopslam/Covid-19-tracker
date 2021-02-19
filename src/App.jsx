@@ -9,18 +9,30 @@ function App() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const [world, countries] = await Promise.all([
+			const [world, countries, countriesVaccine, worldVaccine] = await Promise.all([
 				fetch("https://disease.sh/v3/covid-19/all?yesterday=true").then((res) =>
 					res.json()
 				),
 				fetch("https://disease.sh/v3/covid-19/countries?yesterday=true").then((res) =>
 					res.json()
 				),
+				fetch(
+					"https://disease.sh/v3/covid-19/vaccine/coverage/countries?lastdays=1"
+				).then((res) => res.json()),
+				fetch("https://disease.sh/v3/covid-19/vaccine/coverage?lastdays=1").then((res) =>
+					res.json()
+				),
 			]).catch((err) => {
 				console.log(err);
 			});
-			world.countryInfo = {lat: 15, long: 0};
-			setGlobalData({ world: world, countries: countries });
+			world.countryInfo = { lat: 15, long: 0 };
+			world.countriesVaccine = Object.values(worldVaccine)[0];
+			
+			setGlobalData({
+				world: world,
+				countries: countries,
+				countriesVaccine: countriesVaccine,
+			});
 		};
 		fetchData();
 	}, []);

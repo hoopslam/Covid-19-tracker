@@ -21,8 +21,8 @@ const LoadedApp = ({ globalData, countryNames }) => {
 
 	//Called in typeChangeHandler.  Fires up whenever a new data type is selected
 	const makeDataTypeData = (selectedType) => {
-		setSelectedDataTypeData(
-			globalData.countries.map((country) => ({
+		let countriesDetailArray = globalData.countries.map((country) => {
+			let countryObject = {
 				country: country.country,
 				flag: country.countryInfo.flag,
 				id: country.countryInfo._id,
@@ -32,9 +32,50 @@ const LoadedApp = ({ globalData, countryNames }) => {
 				lng: country.countryInfo.long,
 				cat: selectedType.dataType,
 				text: selectedType.text,
-				typeValue: country[selectedType.dataType],
-			}))
-		);
+			}
+			country[selectedType.dataType] ? countryObject.typeValue = country[selectedType.dataType]
+				:countryObject.typeValue = 0;
+			
+			if(selectedType.dataType !== 'countriesVaccine'){
+				return countryObject;
+			} else { //It is data type countriesVaccine
+				let countryVacData = globalData.countriesVaccine.find((vacCountry) => vacCountry.country === country.country) //check if country has vaccine data
+				countryVacData && (countryObject.typeValue = Object.values(countryVacData.timeline)[0]) //country has vaccine data, push into typeValue
+				return countryObject;
+			}
+		})
+		setSelectedDataTypeData(countriesDetailArray)
+
+		
+		// ))
+		// if(selectedType === 'countriesVaccine') {
+		// 	countriesDetailArray.map((country) => {
+		// 		country.typeValue = Object.values(globalData.countriesVaccine.find((vacCountry) => vacCountry.country === country.country).timeline)
+		// 	})
+		// } else
+		// countriesDetailArray.map((country) => {
+		// 	country.typeValue = globalData.countries.
+		// })
+		// setSelectedDataTypeData(
+		// 	globalData.countries.map((country) => {
+		// 		let countryObject = {
+		// 			country: country.country,
+		// 			flag: country.countryInfo.flag,
+		// 			id: country.countryInfo._id,
+		// 			iso2: country.countryInfo.iso2,
+		// 			iso3: country.countryInfo.iso3,
+		// 			lat: country.countryInfo.lat,
+		// 			lng: country.countryInfo.long,
+		// 			cat: selectedType.dataType,
+		// 			text: selectedType.text,
+		// 		}
+		// 		country[selectedType.dataType] ? 
+		// 		countryObject.typeValue = country[selectedType.dataType] :
+		// 		countryObject.typeValue = 
+
+		// 		return countryObject;
+		// 	})
+		// );
 	};
 
 	//Called in CountryChangeHandler.  Fires up whenever a new country is selected
@@ -69,7 +110,7 @@ const LoadedApp = ({ globalData, countryNames }) => {
 		return (
 			<div className='Loaded-app'>
 				<header className='LoadedApp-header'>
-					<h1 onClick={() => countryChangeHandler("Worldwide")}>Covid-19 Tracker</h1>
+					<h1>Global Covid-19 Tracker</h1>
 					<div className='map-container'>
 						<MapComponent
 							selectedDataTypeData={selectedDataTypeData}
