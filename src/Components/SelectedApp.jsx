@@ -7,7 +7,8 @@ const SelectedApp = ({
 	selectedDataTypeData,
 	selectedDataType,
 	countryChangeHandler,
-	worldData
+	worldData,
+	typeChangeHandler
 }) => {
 	return (
 		<div className='SelectedApp'>
@@ -21,6 +22,7 @@ const SelectedApp = ({
 						selectedDataTypeData={selectedDataTypeData}
 						countryChangeHandler={countryChangeHandler}
 						worldData={worldData}
+						typeChangeHandler={typeChangeHandler}
 					/>
 				</section>
 			</div>

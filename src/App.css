@@ -11,11 +11,6 @@
   align-items: center;
   background-color: var(--primary);
   color: var(--secondary);
-  width: 100%;
-}
-
-.Loaded-app {
-  width: 100%;
 }
 
 .LoadedApp-header {
@@ -174,17 +169,17 @@ input::-webkit-search-cancel-button {
 .details {
   display: flex;
   justify-content: center;
+  max-width: 500px;
 }
 
 /* country summary styling */
 .country-summary-container {
   margin: 10px;
-  width: 500px;
   background-color: var(--primary);
   color: var(--secondary);
   border-radius: 5px;
   border: 1px solid gray;
-  padding: 10px;
+  padding: 10px 0px 5px 0px;
 }
 
 .country-name h2 {
@@ -217,7 +212,9 @@ input::-webkit-search-cancel-button {
 }
 
 .list-container {
-  max-height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 10px;
   overflow-y: scroll;
   text-align: left;
@@ -230,6 +227,10 @@ input::-webkit-search-cancel-button {
 .type {
   margin: 0px 0px 10px 0px;
   text-align: center;
+}
+
+.list-country-button {
+  margin: 10px 0px 15px 0px;
 }
 
 .list-country-data {
@@ -289,7 +290,15 @@ input::-webkit-search-cancel-button {
 }
 
 .Donut-container {
-  margin-top: 40px;
+  margin: 40px 0px 40px 0px;
+}
+
+.HistoricalGraph-container {
+  height: 300px;
+}
+
+.HistoricalGraph {
+  height: 100%;
 }
 
 /* Footer style */
@@ -323,8 +332,8 @@ input::-webkit-search-cancel-button {
     width: 95%;
   }
   .App {
-    width: 100%;
-    min-width: 550px;
+    width: auto;
+    min-width: 600px;
   }
 }
 

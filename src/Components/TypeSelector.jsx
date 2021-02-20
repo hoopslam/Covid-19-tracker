@@ -1,12 +1,12 @@
 import React from "react";
 import { typeColors } from "./util";
 
-function TypeSelector({ selectedDataType, typeChangeHandler }) {
+function TypeSelector({ selectedDataType, typeChangeHandler, styleOptions={ backgroundColor: typeColors[selectedDataType.dataType].color} }) {
 	return (
 		<div className='dropdown'>
 			<button
 				className='dropbtn'
-				style={{ backgroundColor: typeColors[selectedDataType.dataType].color}}>
+				style={styleOptions}>
 				{selectedDataType.text}
 			</button>
 			<div className='dropdown-content type'>

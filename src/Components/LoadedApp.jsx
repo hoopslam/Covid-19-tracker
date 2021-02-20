@@ -34,7 +34,7 @@ const LoadedApp = ({ globalData, countryNames }) => {
 				text: selectedType.text,
 			}
 			country[selectedType.dataType] ? countryObject.typeValue = country[selectedType.dataType]
-				:countryObject.typeValue = 0;
+				:countryObject.typeValue = 0;  //Some countries do not have vaccine data, so 0 is placed as value if datatype is vaccine
 			
 			if(selectedType.dataType !== 'countriesVaccine'){
 				return countryObject;
@@ -45,37 +45,6 @@ const LoadedApp = ({ globalData, countryNames }) => {
 			}
 		})
 		setSelectedDataTypeData(countriesDetailArray)
-
-		
-		// ))
-		// if(selectedType === 'countriesVaccine') {
-		// 	countriesDetailArray.map((country) => {
-		// 		country.typeValue = Object.values(globalData.countriesVaccine.find((vacCountry) => vacCountry.country === country.country).timeline)
-		// 	})
-		// } else
-		// countriesDetailArray.map((country) => {
-		// 	country.typeValue = globalData.countries.
-		// })
-		// setSelectedDataTypeData(
-		// 	globalData.countries.map((country) => {
-		// 		let countryObject = {
-		// 			country: country.country,
-		// 			flag: country.countryInfo.flag,
-		// 			id: country.countryInfo._id,
-		// 			iso2: country.countryInfo.iso2,
-		// 			iso3: country.countryInfo.iso3,
-		// 			lat: country.countryInfo.lat,
-		// 			lng: country.countryInfo.long,
-		// 			cat: selectedType.dataType,
-		// 			text: selectedType.text,
-		// 		}
-		// 		country[selectedType.dataType] ? 
-		// 		countryObject.typeValue = country[selectedType.dataType] :
-		// 		countryObject.typeValue = 
-
-		// 		return countryObject;
-		// 	})
-		// );
 	};
 
 	//Called in CountryChangeHandler.  Fires up whenever a new country is selected
@@ -111,6 +80,13 @@ const LoadedApp = ({ globalData, countryNames }) => {
 			<div className='Loaded-app'>
 				<header className='LoadedApp-header'>
 					<h1>Global Covid-19 Tracker</h1>
+					<Selectors
+						countryChangeHandler={countryChangeHandler}
+						countryNames={countryNames}
+						selectedCountry={selectedCountry}
+						selectedDataType={selectedDataType}
+						typeChangeHandler={typeChangeHandler}
+					/>
 					<div className='map-container'>
 						<MapComponent
 							selectedDataTypeData={selectedDataTypeData}
@@ -122,13 +98,6 @@ const LoadedApp = ({ globalData, countryNames }) => {
 							countryChangeHandler={countryChangeHandler}
 						/>
 					</div>
-					<Selectors
-						countryChangeHandler={countryChangeHandler}
-						countryNames={countryNames}
-						selectedCountry={selectedCountry}
-						selectedDataType={selectedDataType}
-						typeChangeHandler={typeChangeHandler}
-					/>
 				</header>
 				<SelectedApp
 					selectedDataTypeData={selectedDataTypeData}
@@ -136,6 +105,7 @@ const LoadedApp = ({ globalData, countryNames }) => {
 					selectedCountry={selectedCountry}
 					selectedDataType={selectedDataType}
 					countryChangeHandler={countryChangeHandler}
+					typeChangeHandler={typeChangeHandler}
 					worldData={globalData.world[selectedDataType.dataType]}
 				/>
 			</div>

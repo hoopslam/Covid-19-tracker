@@ -56,7 +56,7 @@ export const typeColors = {
 export const makeCircle = (selectedDataTypeData, countryChangeHandler) => {
 	return selectedDataTypeData.map(
 		(country) =>
-			country.iso2 && (
+			(country.typeValue > 0) && country.iso2 && (
 				<Circle
 					center={[country.lat, country.lng]}
 					pathOptions={{
