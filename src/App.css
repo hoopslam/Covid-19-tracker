@@ -330,7 +330,7 @@ input::-webkit-search-cancel-button {
     justify-content: center;
   }
   .map-container {
-    width: 95%;
+    width: 80%;
   }
   .country-summary-container{
     max-width: 80%;
@@ -338,9 +338,9 @@ input::-webkit-search-cancel-button {
     border: none;
   }
   .list-container{
-    min-width: 450px;
+    min-width: 400px;
     border: none;
-    padding-left: 20px;
+    padding: 0 0 0 30px;
   }
   .InfoCard-row{
     flex-direction: column;
