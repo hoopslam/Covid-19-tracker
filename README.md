@@ -6,6 +6,6 @@ App created with Create React App
 -React Leaflet
 -Leaflet
 -numeral
--canvasJS
+-chart-JS
 
 Covid-19 data generously provided by www.disease.sh
