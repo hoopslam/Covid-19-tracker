@@ -338,9 +338,12 @@ input::-webkit-search-cancel-button {
     border: none;
   }
   .list-container{
-    min-width: 400px;
+    min-width: 330px;
     border: none;
-    padding: 0 0 0 30px;
+    padding: 0;
+  }
+  .button-left{
+    padding-left: 5px;
   }
   .InfoCard-row{
     flex-direction: column;
@@ -349,7 +352,14 @@ input::-webkit-search-cancel-button {
     width: 100%;
   }
   section{
-    outline: none;
+    width: 100%;
+  }
+  .LoadedApp-nav{
+    width: 100%;
+    flex-direction: column;
+  }
+  header h1 {
+    font-size: 1.5em;
   }
 }
 
