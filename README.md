@@ -1,4 +1,4 @@
-This project was started to better my understanding of React during this terrible pandemic.  Hopefully, this project will also serve to provide helpful information about Covid-19 to those that choose to use this app.  I hope everyone stays safe and stay strong!
+A Global Covid-19 tracker using daily updated data from Johns Hopkins University and Worldometers. I hope you all stay safe and strong during this terrible pandemic.  Respect the lives around you and please take all proper precautions like wearing a mask and washing your hands regularly!
 
 App created with Create React App
 
