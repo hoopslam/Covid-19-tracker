@@ -9,3 +9,7 @@ App created with Create React App
 -chart-JS
 
 Covid-19 data generously provided by www.disease.sh
+
+## Live Site
+
+https://hoopslam.github.io/Covid-19-tracker/
