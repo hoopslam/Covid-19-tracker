@@ -8,6 +8,10 @@ function App() {
 	const [globalData, setGlobalData] = useState({});
 
 	useEffect(() => {
+		/* fetching the following data: Global totals, totals for each individual country, vaccine
+		 numbers for each country, and vaccine numbers globally.  Each are stored at different endpoints
+		  so we are fetching them all and reorganizing the necesarry data here. */
+		  
 		const fetchData = async () => {
 			const [world, countries, countriesVaccine, worldVaccine] = await Promise.all([
 				fetch("https://disease.sh/v3/covid-19/all?yesterday=true").then((res) =>
@@ -27,7 +31,7 @@ function App() {
 			});
 			world.countryInfo = { lat: 15, long: 0 };
 			world.countriesVaccine = Object.values(worldVaccine)[0];
-			
+
 			setGlobalData({
 				world: world,
 				countries: countries,

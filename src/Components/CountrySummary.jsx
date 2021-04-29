@@ -80,7 +80,7 @@ function CountrySummary({ selectedCountryInfo }) {
 								],
 							},
 						],
-						labels: ["Cases", "No Infection or Not Recorded"],
+						labels: ["Cases", "No Infection or Not Reported"],
 					}}
 					options={{
 						tooltips: tooltipPercentage,
@@ -109,7 +109,7 @@ function CountrySummary({ selectedCountryInfo }) {
 								],
 							},
 						],
-						labels: ["Recovered", "Ongoing Case", "Deceased"],
+						labels: ["Recovered", "Ongoing Case", "Dead"],
 					}}
 					options={{
 						tooltips: tooltipPercentage,

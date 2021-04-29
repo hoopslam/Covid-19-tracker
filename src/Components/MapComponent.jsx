@@ -19,7 +19,7 @@ function MapComponent({selectedDataTypeData, mapCenter, selectedCountry, country
 
 	return (
 		<div className='map'>
-			<MapContainer center={mapCenter} zoom={zoom} scrollWheelZoom={false}>
+			<MapContainer center={mapCenter} zoom={zoom} scrollWheelZoom={false} >
 				<ChangeView center={mapCenter} zoom={zoom} />
 				{makeCircle(selectedDataTypeData, countryChangeHandler)}
 				<TileLayer
