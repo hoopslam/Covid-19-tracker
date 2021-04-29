@@ -1,19 +1,17 @@
 .loader {
     color: #7e7e7e;
     font-size: 20px;
-    margin: 150px auto;
+    margin: 300px auto;
     width: 1em;
     height: 1em;
     border-radius: 50%;
     position: relative;
-    top: 50%;
-    left: 50%;
     text-indent: -9999em;
     -webkit-animation: load4 1.3s infinite linear;
     animation: load4 1.3s infinite linear;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
-    transform: translate(-50%, -50%) translateZ(0);
+    transform: translateZ(0);
   }
   @-webkit-keyframes load4 {
     0%,
