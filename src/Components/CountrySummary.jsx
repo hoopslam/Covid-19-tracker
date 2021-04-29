@@ -80,7 +80,7 @@ function CountrySummary({ selectedCountryInfo }) {
 								],
 							},
 						],
-						labels: ["Cases", "No Infection or Not Reported"],
+						labels: ["Cases", "No Reported Infection"],
 					}}
 					options={{
 						tooltips: tooltipPercentage,
