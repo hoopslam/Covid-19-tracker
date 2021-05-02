@@ -13,6 +13,9 @@ function TypeSelector({ selectedDataType, typeChangeHandler, styleOptions={ back
 				<div className='menuItem' onClick={typeChangeHandler} data-value='active'>
 					Active Cases
 				</div>
+				<div className='menuItem' onClick={typeChangeHandler} data-value='todayCases'>
+					New Cases
+				</div>
 				<div className='menuItem' onClick={typeChangeHandler} data-value='cases'>
 					Total Cases
 				</div>

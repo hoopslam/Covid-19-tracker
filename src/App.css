@@ -336,11 +336,9 @@ input::-webkit-search-cancel-button {
   .country-summary-container{
     max-width: 80%;
     margin: 0 10%;
-    border: none;
   }
   .list-container{
     min-width: 330px;
-    border: none;
     padding: 0;
   }
   .button-left{

@@ -10,7 +10,7 @@ function CountriesList({
 	worldData,
 	typeChangeHandler,
 }) {
-	let sortedData = selectedDataTypeData.sort((a, b) => b.typeValue - a.typeValue).slice(0, 40);
+	let sortedData = selectedDataTypeData.sort((a, b) => b.typeValue - a.typeValue).slice(0, 80);
 
 	return (
 		<div className='CountriesList'>
