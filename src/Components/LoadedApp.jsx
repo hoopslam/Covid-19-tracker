@@ -8,8 +8,8 @@ import MapComponent from "./MapComponent";
 const LoadedApp = ({ globalData, countryNames }) => {
 	const [selectedCountry, setSelectedCountry] = useState("Worldwide");
 	const [selectedDataType, setSelectedDataType] = useState({
-		text: "Active Cases",
-		dataType: "active",
+		text: "New Cases",
+		dataType: "todayCases",
 	});
 	const [selectedDataTypeData, setSelectedDataTypeData] = useState();
 	const [selectedCountryInfo, setSelectedCountryInfo] = useState();
